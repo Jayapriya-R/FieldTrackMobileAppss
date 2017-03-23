@@ -26,12 +26,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/*import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.mitosis.FieldTrackingapp.SalePerson.R;
-import com.mitosis.FieldTrackingapp.SalePerson.app.MainActivity;
-import com.mitosis.FieldTrackingapp.SalePerson.constant.Constants;
-import com.mitosis.FieldTrackingapp.SalePerson.location.GPSService;*/
-
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -42,7 +36,6 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
-//import com.mitosis.FieldTrackingapp.SalePerson.utils.Utils;
 
 import org.json.JSONObject;
 
@@ -54,7 +47,7 @@ import utils.Utils;
  */
 
 public class LeadDetailsFragment extends Fragment implements OnMapReadyCallback,LocationListener {
-    Marker m1, m2;
+    Marker m1;
     MapView mMapView;
     GoogleMap mGoogleMap;
     ImageView call, leadImage;
@@ -118,8 +111,6 @@ public class LeadDetailsFragment extends Fragment implements OnMapReadyCallback,
         addstate.setText(statE + "," + zipcode + ",");
         kilometer.setText(mile + " " + "Meters Away");
         assignDate.setText(assigndate);
-        /*Typeface type = Typeface.createFromAsset(getContext().getAssets(),"fonts/Roboto Slab Bold\n");
-        docname.setTypeface(type);*/
 
         Picasso.with(getContext())
                 .load(images)
@@ -152,7 +143,6 @@ public class LeadDetailsFragment extends Fragment implements OnMapReadyCallback,
                     jsonObject.put("notes", description.getText().toString());
                     new MyAsyncTask((Activity) getContext()).execute();
 
-                    //Toast.makeText(getContext(), "Button Disabled", Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -237,14 +227,7 @@ else{
         mGoogleMap = googleMap;
         mGoogleMap.getUiSettings().setZoomControlsEnabled(false);
 
-     /*   m1 = googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(lat,lng))
-                .anchor(0.5f, 0.5f)
-                .title("Title1")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-                .snippet("Snippet1"));*/
-
-        m2 = googleMap.addMarker(new MarkerOptions()
+        m1 = googleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(Double.valueOf(lat1),Double.valueOf(lng1)))
                 .anchor(0.5f, 0.5f)
                 .title("Title2")
@@ -253,8 +236,7 @@ else{
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
-       // builder.include(m1.getPosition());
-        builder.include(m2.getPosition());
+        builder.include(m1.getPosition());
 
         LatLngBounds bounds = builder.build();
 
@@ -334,5 +316,4 @@ else{
         Toast.makeText(getActivity(), "Loading Map...", Toast.LENGTH_SHORT).show();
         return super.onOptionsItemSelected(item);
     }
-
 }

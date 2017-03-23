@@ -67,19 +67,6 @@ public class ResetpasswordFragment extends Fragment {
             }
         });
 
-
-       /* toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Fragment fragment = new ProfileFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_layout_for_activity_navigation, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        });*/
 return view;
     }
 
@@ -114,7 +101,6 @@ return view;
 
             }
         }
-
     }
 
     @Override
@@ -132,6 +118,4 @@ return view;
         item4.setVisible(false);
         super.onCreateOptionsMenu(menu, inflater);
     }
-
-
 }

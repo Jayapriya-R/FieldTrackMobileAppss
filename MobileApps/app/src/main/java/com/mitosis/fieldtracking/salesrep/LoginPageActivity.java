@@ -68,9 +68,8 @@ public class LoginPageActivity extends AppCompatActivity {
 
                     registerUserURL = "http://202.61.120.46:9081/FieldTracking/users/login?userName=" + Email.getText().toString() + "&password=" + Password.getText().toString();
                     jsonObject = new JSONObject();
-//                    new MyAsyncTask().execute();
-                    Intent sign = new Intent(LoginPageActivity.this, MainActivity.class);
-                    startActivity(sign);
+                 new MyAsyncTask().execute();
+
 
                 } catch (Exception e1) {
                     e1.printStackTrace();
@@ -122,7 +121,6 @@ public class LoginPageActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            //System.out.println("Output: " + result);
             if (result.equals("Login sucessfull\n")) {
                 Intent sign = new Intent(LoginPageActivity.this, MainActivity.class);
                 startActivity(sign);

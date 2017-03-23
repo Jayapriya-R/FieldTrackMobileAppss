@@ -121,7 +121,6 @@ public class PendingLeadFragment extends Fragment implements LocationListener {
                 String lat=latitude.get(position);
                 String lng=longitude.get(position);
                 String date=appointmentDate.get(position);
-             //   String leadid=leadDetailsId.get(position);
 
                 Bundle args = new Bundle();
                 Fragment fragment = new LeadDetailsFragment();
@@ -136,7 +135,6 @@ public class PendingLeadFragment extends Fragment implements LocationListener {
                 args.putString("ZipCode", zipcode);
                 args.putString("Mile", mile);
                 args.putString("mobile", mobnum);
-               // args.putString("idLead", leadid);
                 args.putString("latitude", lat);
                 args.putString("longitude", lng);
                 args.putString("appointmentDate", date);
@@ -229,7 +227,6 @@ public class PendingLeadFragment extends Fragment implements LocationListener {
                                     int temp = integersArray.get(j);
                                     integersArray.set(j, integersArray.get(j + 1));
                                     integersArray.set(j + 1, temp);
-                                    // flag=false;
                                 }
                             }
                         }
@@ -331,7 +328,6 @@ public class PendingLeadFragment extends Fragment implements LocationListener {
 
                             PendingAdapter adapter = new PendingAdapter(getContext(),contactName,status,leadDetailsId,addressLine1,addressLine2,city,state,zipCode,latitude,longitude,distanceArr,leadImage);
                             list.setAdapter(adapter);
-                            //PendingAdapter.notifyDataSetChanged();
                         }
                     } catch (JSONException e) {
                     }

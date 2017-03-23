@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class Constants {
     public final static String FRAG_A="fragment_a";
     public final static String FRAG_B="fragment_b";
-    public final static String FRAG_C="fragment_c";
     public final static String FRAG_D="maps";
     public final static String FRAG_E="activity_maps";
     public final static String FRAG_F="profile";

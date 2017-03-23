@@ -41,10 +41,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-/*import com.mitosis.FieldTrackingapp.SalePerson.app.MainActivity;
-import com.mitosis.FieldTrackingapp.SalePerson.constant.Constants;
-import com.mitosis.FieldTrackingapp.SalePerson.adapter.FavouritesAdapter;
-import com.mitosis.FieldTrackingapp.SalePerson.R;*/
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -179,8 +176,6 @@ public class TotalLeadFragment extends Fragment implements LocationListener {
             }
         });
 
-
-
         try {
 
             lm=(LocationManager)getContext().getSystemService(Context.LOCATION_SERVICE);
@@ -212,14 +207,6 @@ public class TotalLeadFragment extends Fragment implements LocationListener {
         item4.setVisible(false);
         super.onCreateOptionsMenu(menu, inflater);
         getActivity().setTitle("DASHBOARD");
-
-        /* SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.action_search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));*/
-
     }
 
     @Override
@@ -235,7 +222,6 @@ public class TotalLeadFragment extends Fragment implements LocationListener {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     public void showChangeLangDialog() {
@@ -260,7 +246,6 @@ public class TotalLeadFragment extends Fragment implements LocationListener {
 
                         for (int i = 0; i < distanceArr.size(); i++) {
                             integersArray.add(Integer.parseInt(distanceArr.get(i)));
-                            //  Toast.makeText(getContext(), distanceArr.get(i), Toast.LENGTH_SHORT).show();
                         }
                         for (Integer integer: integersArray) {
                             System.out.println(integer);
@@ -274,7 +259,6 @@ public class TotalLeadFragment extends Fragment implements LocationListener {
                                     int temp = integersArray.get(j);
                                     integersArray.set(j, integersArray.get(j + 1));
                                     integersArray.set(j + 1, temp);
-                                    // flag=false;
                                 }
                             }
                         }
@@ -330,8 +314,6 @@ public class TotalLeadFragment extends Fragment implements LocationListener {
     public void onProviderDisabled(String provider) {
 
     }
-
-
     private class RegisterTask extends AsyncTask<String, Void, Void> {
 
         public RegisterTask() {
@@ -407,4 +389,3 @@ public class TotalLeadFragment extends Fragment implements LocationListener {
         }
     }
 }
-

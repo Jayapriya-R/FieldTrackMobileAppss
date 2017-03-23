@@ -30,9 +30,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
-/*import com.mitosis.FieldTrackingapp.SalePerson.R;
-import com.mitosis.FieldTrackingapp.SalePerson.constant.Constants;
-import com.mitosis.FieldTrackingapp.SalePerson.utils.Utils;*/
 
 import org.json.JSONObject;
 
@@ -56,7 +53,7 @@ public class CreateLeadFragment extends Fragment {
     EditText mPhone;
     ImageView leadimage;
     EditText Clientname, Desitination, mAddress2;
-    EditText city, state, zipCode, assignto;
+    EditText city, state, zipCode;
     Spinner spnr;
     RelativeLayout create_lead;
 
@@ -90,7 +87,6 @@ public class CreateLeadFragment extends Fragment {
         state = (EditText) view.findViewById(R.id.edit_state);
         zipCode = (EditText) view.findViewById(R.id.edit_pin);
         mPhone = (EditText) view.findViewById(R.id.edit_mobNum);
-        // assignto = (EditText) view.findViewById(R.id.edit_assignTo);
         imageicon = (ImageView) view.findViewById(R.id.imageicon);
         leadimage = (ImageView) view.findViewById(R.id.leadimage);
         create_lead = (RelativeLayout) view.findViewById(R.id.layout_create);
@@ -232,8 +228,6 @@ public class CreateLeadFragment extends Fragment {
                     jsonObject1.put("imageType", "jpg");
                     jsonObject1.put("imageBase64", encodedImage);
 
-                    // new MyAsyncTask1(getActivity()).execute();
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -249,7 +243,6 @@ public class CreateLeadFragment extends Fragment {
 
         String content = "";
         String content1 = "";
-        String content2 = "";
         String content3 = "";
         if (!TextUtils.isEmpty(place.getName())) {
             content += "" + place.getName() + "\n";
@@ -258,9 +251,7 @@ public class CreateLeadFragment extends Fragment {
         if (!TextUtils.isEmpty(place.getAddress())) {
             content1 += "" + place.getAddress() + "\n";
         }
-       /* if (!TextUtils.isEmpty(place.getPhoneNumber())) {
-            content2 += "" + place.getPhoneNumber();
-        }*/
+
         if (!TextUtils.isEmpty(place.getLatLng().latitude + " " + place.getLatLng().longitude)) {
             content3 += "" + place.getLatLng().latitude + " " + place.getLatLng().longitude;
             latitude = "" + place.getLatLng().latitude;
@@ -281,7 +272,6 @@ public class CreateLeadFragment extends Fragment {
             zipCode.setText(address[5]);
         }
 
-        //mPhone.setText(content2);
         LatLong.add(String.valueOf(content3));
     }
 

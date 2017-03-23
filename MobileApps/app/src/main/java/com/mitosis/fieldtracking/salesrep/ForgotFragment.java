@@ -27,8 +27,8 @@ public class ForgotFragment extends Activity {
         setContentView(R.layout.forgot);
 
 
-        email = (EditText)findViewById(R.id.editText);
-        submit = (TextView)findViewById(R.id.text_submit);
+        email = (EditText) findViewById(R.id.editText);
+        submit = (TextView) findViewById(R.id.text_submit);
 
 
         submit.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +41,7 @@ public class ForgotFragment extends Activity {
                 if (!isValidEmail(Email)) {
                     email.setError("Invalid Email");
 
-                }else {
+                } else {
 
                 }
 
@@ -58,6 +58,7 @@ public class ForgotFragment extends Activity {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -65,9 +66,4 @@ public class ForgotFragment extends Activity {
         ForgotFragment.this.setTitle("FORGOT PASSWORD");
         return true;
     }
-    }
-
-
-
-
-
+}

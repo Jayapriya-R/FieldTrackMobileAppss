@@ -50,7 +50,6 @@ import static com.mitosis.fieldtracking.salesrep.Constants.leadImage;
 import static com.mitosis.fieldtracking.salesrep.Constants.lng;
 import static com.mitosis.fieldtracking.salesrep.TotalLeadFragment.distanceArr;
 
-
 /**
  * Created by mitosis on 20/2/17.
  */
@@ -60,14 +59,13 @@ public class CompletedLeadFragment extends Fragment  implements LocationListener
     RadioButton dateasc,distance;
     RadioGroup sort;
     LocationManager lm;
-    String provider,lat2,lng2;
+    String provider;
     Location l;
     double distances;
 
     public static ArrayList<String> distanceArrs=new ArrayList<>();
-
-
     List<Integer> integersArray = new ArrayList<>();
+
     public static ArrayList<String> contactName=new ArrayList<>();
     public static ArrayList<String> status=new ArrayList<>();
     public static ArrayList<String> addressLine1=new ArrayList<>();
@@ -123,7 +121,6 @@ public class CompletedLeadFragment extends Fragment  implements LocationListener
                 String lat=latitude.get(position);
                 String lng=longitude.get(position);
                 String date=appointmentDate.get(position);
-                //String leadid=leadDetailsId.get(position);
 
                 Bundle args = new Bundle();
                 Fragment fragment = new LeadDetailsFragment();
@@ -141,7 +138,6 @@ public class CompletedLeadFragment extends Fragment  implements LocationListener
                 args.putString("latitude", lat);
                 args.putString("longitude", lng);
                 args.putString("appointmentDate", date);
-                // args.putString("idLead", leadid);
 
                 fragment.setArguments(args);
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -232,7 +228,6 @@ public class CompletedLeadFragment extends Fragment  implements LocationListener
                                     int temp = integersArray.get(j);
                                     integersArray.set(j, integersArray.get(j + 1));
                                     integersArray.set(j + 1, temp);
-                                    // flag=false;
                                 }
                             }
                         }
@@ -288,8 +283,6 @@ public class CompletedLeadFragment extends Fragment  implements LocationListener
     public void onProviderDisabled(String provider) {
 
     }
-
-
     private class RegisterTask extends AsyncTask<String, Void, Void> {
 
         public RegisterTask() {
@@ -349,7 +342,6 @@ public class CompletedLeadFragment extends Fragment  implements LocationListener
                             distances = location1.distanceTo(location2);
                             distanceArr.add(String.valueOf((int) Math.round(distances)));
                         }
-                        //  distanceArr.add(String.valueOf((int) Math.round(distances)));
                     }
                     catch (Exception e) {
                         e.printStackTrace();
@@ -359,9 +351,7 @@ public class CompletedLeadFragment extends Fragment  implements LocationListener
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    //spinner.setVisibility(View.GONE);
                     Log.e("RegisterActivity", error.getMessage() != null ? error.getMessage() : "");
-                    //Paybee.get().showToast(getString(R.string.something_went_wrong), Toast.LENGTH_SHORT);
                 }
             });
             requestQueue.add(registerRequest);

@@ -102,11 +102,6 @@ public class PendingAdapter extends ArrayAdapter<String> {
         }
         if(statusArr.get(position).equals("STARTED"))
         {
-            /*start = (TextView) rowView.findViewById(R.id.start);
-            attend = (ImageView) rowView.findViewById(R.id.attend);
-            reached = (ImageView) rowView.findViewById(R.id.reached);
-            startimage=(ImageView) rowView.findViewById(R.id.imagestart);*/
-
             startyet = (ImageView) rowView.findViewById(R.id.yetstart);
             startyet.setVisibility(View.GONE);
 

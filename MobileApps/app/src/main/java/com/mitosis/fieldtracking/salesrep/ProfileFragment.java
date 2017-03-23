@@ -185,5 +185,4 @@ public class ProfileFragment extends Fragment {
         item4.setVisible(false);
         super.onCreateOptionsMenu(menu, inflater);
     }
-
 }

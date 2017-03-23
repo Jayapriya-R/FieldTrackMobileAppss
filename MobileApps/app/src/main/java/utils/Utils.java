@@ -68,7 +68,6 @@ public class Utils {
                 response = httpClient.execute(httpPost);
             }
 
-
             HttpEntity httpEntity = response.getEntity();
             is = httpEntity.getContent();
             BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -93,8 +92,5 @@ public class Utils {
         }
 
         return respCallBack;
-
     }
-
-
 }
