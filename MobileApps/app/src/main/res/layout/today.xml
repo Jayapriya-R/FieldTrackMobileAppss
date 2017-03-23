@@ -7,21 +7,20 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:id="@+id/relativeLayout">
+        android:layout_height="100dp">
 
         <RelativeLayout
             android:layout_width="95dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="10dp"
+            android:layout_height="75dp">
 
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="75dp"
                 app:civ_border_color="@color/rosybrown"
-                app:civ_border_width="1dp"
-                android:layout_marginTop="0dp"
+                app:civ_border_width="2dp"
+                android:id="@+id/image_lead"
                 android:src="@drawable/doctor2"/>
 
         </RelativeLayout>
@@ -38,17 +37,9 @@
                     android:layout_marginTop="10dp"
                     android:id="@+id/doconame"
                     android:textSize="20dp"
-                    android:text="Dr. Mary Sanchez"
-                    android:textColor="#403b3b"
+                    android:text="Dr. Prathap C Reddy"
+                    android:textStyle="normal|bold"
                     android:layout_height="25dp" />
-
-                <TextView
-                    android:text=""
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="19dp"
-                    android:layout_marginLeft="180dp"
-                    android:id="@+id/textView13" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -58,19 +49,57 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:src="@drawable/marker"
-                    android:layout_height="15dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginTop="2dp"/>
+                    android:layout_marginTop="2dp"
+                    android:layout_height="15dp" />
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7.5"
+                    android:id="@+id/text_miles"
+                    android:textSize="12sp"
+
+                    android:layout_marginLeft="20dp"/>
+
 
 
                 <TextView
-                    android:layout_width="95dp"
-                    android:text="7.5 Miles Away"
-                    android:layout_marginTop="2dp"
+                    android:layout_width="55dp"
                     android:layout_height="20dp"
-                    android:textSize="12sp"
+                    android:id="@+id/start"
+                    android:layout_marginLeft="185dp"/>
 
-                    android:layout_marginLeft="25dp"/>
+
+
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/yetstart"
+                    android:src="@drawable/start"
+                    android:layout_marginLeft="145dp"/>
+
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/reached"
+                    android:src="@drawable/reached"
+                    android:layout_marginLeft="145dp"/>
+
+
+
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/attend"
+                    android:src="@drawable/attended"                        android:textSize="18dp"
+                    android:layout_marginLeft="145dp"/>
+
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/imagestart"
+                    android:src="@drawable/started"
+                    android:layout_marginLeft="145dp"/>
 
                 <ImageView
                     android:layout_width="45dp"
@@ -79,27 +108,8 @@
                     android:layout_marginLeft="240dp"
                     />
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="18dp"
-                    app:srcCompat="@drawable/start"
-                    android:layout_marginLeft="150dp"
-                    android:id="@+id/start_image" />
-
-                <TextView
-                    android:text="New"
-                    android:textSize="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="180dp"
-                    android:id="@+id/start_new" />
-
             </RelativeLayout>
 
         </RelativeLayout>
-
-
-
     </RelativeLayout>
-
 </RelativeLayout>

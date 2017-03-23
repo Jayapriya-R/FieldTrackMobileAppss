@@ -2,70 +2,62 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="wrap_content">
 
-    <RelativeLayout
-        android:layout_width="280dp"
-        android:id="@+id/relm"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:padding="5dp">
 
-        <View
-            android:id="@+id/view"
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginTop="2dp"
+        android:background="#bfbfbf" />
+
+    <RadioGroup
+        android:id="@+id/sort"
+        android:layout_width="match_parent"
+        android:layout_height="215dp" >
+
+        <RadioButton
+            android:layout_marginTop="15dp"
+            android:id="@+id/dateasc"
             android:layout_width="wrap_content"
-            android:layout_height="2dp"
-            android:layout_marginTop="2dp"
-            android:background="#bfbfbf" />
+            android:layout_height="wrap_content"
+            android:text="Sort by date"
+            android:layout_marginLeft="20dp"
+            android:buttonTint="#0d5599"/>
 
-        <RelativeLayout
-            android:id="@+id/re1"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_below="@+id/view"
-            android:layout_centerHorizontal="true">
+        <RadioButton
+            android:layout_marginTop="10dp"
+            android:id="@+id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:buttonTint="#0d5599"
+            android:text="Distance" />
+        <RadioButton
+            android:layout_marginTop="10dp"
+            android:id="@+id/sortaz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:buttonTint="#0d5599"
+            android:text="Sort(A-Z)" />
+        <RadioButton
+            android:layout_marginTop="10dp"
+            android:id="@+id/sortza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:buttonTint="#0d5599"
+            android:text="Sort(Z-A)" />
+    </RadioGroup>
 
-            <RadioGroup
-                android:id="@+id/radioSex"
-                android:layout_width="match_parent"
-                android:layout_height="150dp" >
-
-                <RadioButton
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/alphaz"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alphabetical(A-Z)"
-                    android:checked="true" />
-
-                <RadioButton
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/alphza"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alphabetical(Z-A)" />
-                <RadioButton
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/distance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Distance" />
-
-            </RadioGroup>
-
-
-        </RelativeLayout>
-
-        <View
-            android:id="@+id/view1"
-            android:layout_width="match_parent"
-            android:layout_below="@+id/re1"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:background="#000000" />
-
-    </RelativeLayout>
-
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="185dp"
+        android:background="#bfbfbf" />
 
 </RelativeLayout>
+

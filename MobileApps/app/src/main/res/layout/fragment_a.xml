@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.mitosis.salemanager.FragmentA">
+    tools:context="com.mitosis.fieldtracking.salesrep.TabFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +13,8 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="@drawable/side_nav_bar"
+            app:tabIndicatorColor="#e9ad22"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             android:theme="@style/AppTheme.AppBarOverlay"/>
 
