@@ -87,4 +87,5 @@ public class DirectionsJSONParser {
 	        poly.add(p);
 	    }
 	    return poly;
-	}}
+	}
+}

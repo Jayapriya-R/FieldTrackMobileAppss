@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#d2d1d1" />
+    <RadioGroup
+        android:id="@+id/sort"
+        android:layout_below="@+id/relative1"
+        android:layout_width="match_parent"
+        android:layout_height="180dp" >
+
+        <RadioButton
+            android:layout_marginTop="20dp"
+            android:id="@+id/radio_nationalManager"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="National Manager"
+            android:layout_marginLeft="20dp"
+            android:checked="true"
+            android:buttonTint="#0d5599"/>
+
+        <RadioButton
+            android:layout_marginTop="20dp"
+            android:id="@+id/radio_regionalManager"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="Regional Manager"
+            android:layout_marginLeft="20dp"
+            android:buttonTint="#0d5599"/>
+
+        <RadioButton
+            android:layout_marginTop="20dp"
+            android:id="@+id/radio_sales"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:buttonTint="#0d5599"
+            android:text="Representative" />
+
+    </RadioGroup>
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="170dp"
+        android:background="#d2d1d1" />
+
+</RelativeLayout>

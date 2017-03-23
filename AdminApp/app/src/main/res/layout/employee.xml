@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/relativeLayout">
+
+        <RelativeLayout
+            android:layout_width="95dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="65dp">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                app:civ_border_color="#bab5b5"
+                app:civ_border_width="2dp"
+                android:src="@drawable/doctor2"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="95dp"
+            android:layout_height="75dp">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/rdocname"
+                android:layout_height="40dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/doconame"
+                    android:textSize="20dp"
+                    android:text="Selvakumar"
+                    android:textStyle="normal|bold"
+                    android:layout_marginLeft="0dp"
+                    android:layout_height="25dp" />
+            </RelativeLayout>
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text_role"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="97dp"
+        android:layout_marginTop="45dp"
+        android:textSize="15dp"
+        android:text="Sales Representative" />
+    <ImageView
+        android:layout_width="45dp"
+        android:layout_height="20dp"
+        android:src="@drawable/rightanglearrow"
+        android:layout_marginLeft="320dp"
+        android:layout_marginTop="30dp"
+        />
+</RelativeLayout>
