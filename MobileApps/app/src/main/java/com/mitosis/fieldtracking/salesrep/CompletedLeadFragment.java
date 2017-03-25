@@ -48,6 +48,7 @@ import static com.mitosis.fieldtracking.salesrep.Constants.appointmentDate;
 import static com.mitosis.fieldtracking.salesrep.Constants.lat;
 import static com.mitosis.fieldtracking.salesrep.Constants.leadImage;
 import static com.mitosis.fieldtracking.salesrep.Constants.lng;
+import static com.mitosis.fieldtracking.salesrep.Constants.sortaz;
 import static com.mitosis.fieldtracking.salesrep.TotalLeadFragment.distanceArr;
 
 /**
@@ -56,7 +57,7 @@ import static com.mitosis.fieldtracking.salesrep.TotalLeadFragment.distanceArr;
 
 public class CompletedLeadFragment extends Fragment  implements LocationListener {
     ListView list;
-    RadioButton dateasc,distance;
+    RadioButton dateasc,distance,sortatoz,sortztoa;
     RadioGroup sort;
     LocationManager lm;
     String provider;
@@ -204,6 +205,8 @@ public class CompletedLeadFragment extends Fragment  implements LocationListener
             public void onClick(DialogInterface dialog, int whichButton) {
                 sort= (RadioGroup)dialogView.findViewById(R.id.sort);
                 int selectedId = sort.getCheckedRadioButtonId();
+                sortatoz= (RadioButton) dialogView.findViewById(R.id.dateasc);
+                sortztoa= (RadioButton) dialogView.findViewById(R.id.dateasc);
                 dateasc= (RadioButton) dialogView.findViewById(R.id.dateasc);
                 distance= (RadioButton) dialogView.findViewById(R.id.distance);
                 switch (selectedId) {

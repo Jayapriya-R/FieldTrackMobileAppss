@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -67,16 +68,16 @@ import static com.mitosis.fieldtracking.salesrep.Constants.zipCode;
 import static com.mitosis.fieldtracking.salesrep.R.id.dateasc;
 
 
+
 public class TotalLeadFragment extends Fragment implements LocationListener {
     ListView list;
-    RadioButton alphaa, distance;
+    RadioButton alphaa, distance,atoz,ztoa;
     RadioGroup sort;
     LocationManager lm;
     String provider,lat2,lng2;
     Location l;
     double distances;
     FloatingActionButton fab;
-
     List<Integer> integersArray = new ArrayList<>();
     public static ArrayList<String> distanceArrs=new ArrayList<>();
     public static ArrayList<String> distanceArr=new ArrayList<>();
@@ -111,7 +112,6 @@ public class TotalLeadFragment extends Fragment implements LocationListener {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
         new RegisterTask().execute(Constants.loginUrl);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -240,10 +240,10 @@ public class TotalLeadFragment extends Fragment implements LocationListener {
                     case R.id.dateasc:
                         new RegisterTask().execute(Constants.sortappointdateasc);
 
-
+                        alphaa.setChecked(true);
                         break;
                     case R.id.distance:
-
+                        distance.setChecked(true);
                         for (int i = 0; i < distanceArr.size(); i++) {
                             integersArray.add(Integer.parseInt(distanceArr.get(i)));
                         }
@@ -277,12 +277,12 @@ public class TotalLeadFragment extends Fragment implements LocationListener {
                         break;
                     case R.id.sortaz:
 
+
                         new RegisterTask().execute(Constants.sortaz);
 
                         break;
                     case R.id.sortza:
                         new RegisterTask().execute(Constants.sortza);
-
                 }
             }
         });

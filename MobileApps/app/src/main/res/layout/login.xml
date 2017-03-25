@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_bg">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -30,55 +32,60 @@
 
         <TextView
             android:id="@+id/textView1"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:textStyle="bold"
-            android:textColor="#000"
-
+            android:textColor="#444"
+            android:textSize="17dp"
             android:layout_marginLeft="20dp"
             android:text="USERNAME"
             android:gravity="bottom"/>
         <TextView
             android:text="*"
-            android:textColor="#fc0101"
+            android:textColor="#FFC12D2D"
             android:textStyle="bold"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginRight="240dp"
-            android:layout_marginLeft="100dp"
+            android:textSize="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/textView1"
             android:id="@+id/textView2" />
         <EditText
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:singleLine="true"
             android:textColorHint="#dfdfdf"
             android:layout_marginLeft="50dp"
             android:hint="Enter Username/Email ID "
+            android:inputType="textEmailAddress"
             android:layout_below="@+id/textView1"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginTop="7dp"
             android:layout_marginLeft="20dp"
             android:text="PASSWORD"
             android:textStyle="bold"
-            android:textColor="#000"
+            android:textColor="#444"
+            android:textSize="17dp"
             android:gravity="bottom"
             android:layout_below="@+id/editText"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+           />
         <TextView
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="84dp"
-            android:textColor="#fc0101"
+            android:layout_height="30dp"
+            android:layout_alignTop="@+id/textView3"
+            android:layout_marginLeft="10dp"
+            android:textSize="17dp"
+            android:layout_toRightOf="@+id/textView3"
+            android:textColor="#FFC12D2D"
             android:text="*" />
 
 
@@ -91,6 +98,7 @@
             android:layout_below="@+id/textView3"
             android:layout_marginLeft="50dp"
             android:hint="Enter your Password"
+            android:singleLine="true"
             android:inputType="textPassword"
             android:layout_alignBottom="@+id/textView4"
             android:layout_alignParentRight="true"
@@ -114,6 +122,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/relative2"
         android:textStyle="bold"
+        android:textSize="17dp"
+        android:textColor="#444"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:text="REMEMBER ME" />
@@ -124,11 +134,12 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textStyle="bold"
-        android:textColor="#fc0101"
-        android:textSize="15dp"
+        android:textColor="#FFC12D2D"
+        android:textSize="17dp"
         android:text="FORGOT PASSWORD"
-        android:layout_marginLeft="210dp"
-        android:layout_alignBaseline="@+id/checkBox"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/checkBox"
         android:layout_alignBottom="@+id/checkBox"
         />
     <Button
@@ -140,9 +151,11 @@
         android:textStyle="bold"
         android:text="LOGIN"
         android:textSize="20dp"
+        android:layout_alignRight="@+id/textView12"
         android:layout_below="@+id/checkBox"
         android:layout_marginLeft="250dp"
         android:layout_marginTop="10dp" />
 
 </RelativeLayout>
 
+</ScrollView>

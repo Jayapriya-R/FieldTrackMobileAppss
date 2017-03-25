@@ -1,6 +1,7 @@
 package com.mitosis.fieldtracking.salesrep;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
@@ -11,9 +12,13 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
     private CoordinatorLayout coordinatorLayout;
@@ -71,18 +76,36 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         Bundle args = new Bundle();
         String title = "";
         switch (id) {
-            case R.id.nav_1:
-                fragmentClass = CreateLeadFragment.class;
-                args.putString(Constants.FRAG_E, "Gallery");
-
-                break;
-            case R.id.nav_2:
+            case R.id.nav_3:
                 fragmentClass = TabFragment.class;
                 args.putString(Constants.FRAG_D, "Gallery");
 
                 break;
             case R.id.nav_6:
                 fragmentClass = ProfileFragment.class;
+                args.putString(Constants.FRAG_F, "profile");
+
+                break;
+            case R.id.nav_8:
+                AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
+//                LayoutInflater layoutInflater=(LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+//                View layout=layoutInflater.inflate(R.layout.today,null);
+//                alertDialog.setView(layout);
+                alertDialog.setTitle("Confirmation");
+                alertDialog.setMessage("       Do you want to signout?");
+                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alertDialog.setPositiveButton("Signout", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+                alertDialog.show();
                 args.putString(Constants.FRAG_F, "profile");
 
                 break;

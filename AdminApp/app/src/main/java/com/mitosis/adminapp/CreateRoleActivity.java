@@ -1,6 +1,7 @@
 package com.mitosis.adminapp;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -60,24 +61,33 @@ public class CreateRoleActivity extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               String sFirstname= firstName.getText().toString();
+                String sLastname=  lastName.getText().toString();
+                String sUsername= userName.getText().toString();
+                String sDesignation= Designation.getText().toString();
+                String sPhone= phoneNumber.getText().toString();
+                if (!sFirstname.isEmpty()||!sLastname.isEmpty()||!sUsername.isEmpty()||!sPhone.isEmpty()||!sDesignation.isEmpty()){
+                 if (sUsername.contains("@")){
+                     jsonObject = new JSONObject();
+                     try {
+                         jsonObject.put("firstName",sFirstname );
+                         jsonObject.put("lastName", sLastname);
+                         jsonObject.put("userName", sUsername);
+                         jsonObject.put("emailId", "fieldtrackingadmin@yopmail.com");
+                         jsonObject.put("role",sDesignation );
+                         jsonObject.put("password", "admin123");
+                         jsonObject.put("createdBy", "fieldtrackingadmin@yopmail.com");
+                         jsonObject.put("telephoneNumber", "99161193");
+                         jsonObject.put("mobileNumber",sPhone );
+                         new MyAsyncTask(getActivity()).execute();
+                     } catch (Exception e) {
 
-                jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("firstName", firstName.getText().toString());
-                    jsonObject.put("lastName", lastName.getText().toString());
-                    jsonObject.put("userName", userName.getText().toString());
-                    jsonObject.put("emailId", "fieldtrackingadmin@yopmail.com");
-                    jsonObject.put("role", Designation.getText().toString());
-                    jsonObject.put("password", "admin123");
-                    jsonObject.put("createdBy", "fieldtrackingadmin@yopmail.com");
-                    jsonObject.put("telephoneNumber", "99161193");
-                    jsonObject.put("mobileNumber", phoneNumber.getText().toString());
-
-                    new MyAsyncTask(getActivity()).execute();
-
-
-                } catch (Exception e) {
-
+                     }
+                 }else {
+                     Toast.makeText(getActivity(), "Invaild username.Please make sure username is email ID or not.", Toast.LENGTH_SHORT).show();
+                 }
+                }else{
+                    Toast.makeText(getActivity(), "Please fill all fields.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -135,7 +145,7 @@ public class CreateRoleActivity extends Fragment {
 
     class MyAsyncTask extends AsyncTask<String, String, String> {
         Activity mContex;
-
+  ProgressDialog progressDialog=new ProgressDialog(getActivity());
         public MyAsyncTask(Activity context) {
             this.mContex = context;
         }
@@ -147,14 +157,21 @@ public class CreateRoleActivity extends Fragment {
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage("Please wait..");
+            progressDialog.setTitle("Loading..");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+
+        @Override
         protected void onPostExecute(String result) {
 
             System.out.println("result=" + result);
 
             if (result.equals("")) {
-
                 Toast.makeText(getContext(), "Created Successfully", Toast.LENGTH_SHORT).show();
-
 
                 Fragment fragment = new EmployeeListActivity();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -166,10 +183,9 @@ public class CreateRoleActivity extends Fragment {
                 firstName.setText("");
                 lastName.setText("");
                 userName.setText("");
-                email.setText("");
                 Designation.setText("");
                 phoneNumber.setText("");
-
+                progressDialog.dismiss();
             } else {
 
                 Toast.makeText(getContext(), "Created Failed", Toast.LENGTH_SHORT).show();

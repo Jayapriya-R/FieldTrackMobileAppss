@@ -1,6 +1,7 @@
 package com.mitosis.fieldtracking.salesrep;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -8,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.TextViewCompat;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -18,10 +20,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -54,8 +58,8 @@ public class CreateLeadFragment extends Fragment {
     ImageView leadimage;
     EditText Clientname, Desitination, mAddress2;
     EditText city, state, zipCode;
-    Spinner spnr;
-    RelativeLayout create_lead;
+    TextView spnr;
+    Button create_lead;
 
     private Bitmap bitmap;
     private Uri filePath;
@@ -89,32 +93,9 @@ public class CreateLeadFragment extends Fragment {
         mPhone = (EditText) view.findViewById(R.id.edit_mobNum);
         imageicon = (ImageView) view.findViewById(R.id.imageicon);
         leadimage = (ImageView) view.findViewById(R.id.leadimage);
-        create_lead = (RelativeLayout) view.findViewById(R.id.layout_create);
-        spnr = (Spinner) view.findViewById(R.id.btn_spinner);
-
-        String[] celebrities = {"MY SELF"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, celebrities);
-
-        spnr.setAdapter(adapter);
-        spnr.setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener() {
-
-                    @Override
-                    public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                               int arg2, long arg3) {
-
-                        int position = spnr.getSelectedItemPosition();
-                        // TODO Auto-generated method stub
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> arg0) {
-                        // TODO Auto-generated method stub
-
-                    }
-                });
-
-        create_lead.setOnClickListener(new View.OnClickListener() {
+        create_lead = (Button) view.findViewById(R.id.layout_create);
+        spnr = (TextView) view.findViewById(R.id.btn_spinner);
+                create_lead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -300,6 +281,8 @@ public class CreateLeadFragment extends Fragment {
 
     class MyAsyncTask extends AsyncTask<String, String, String> {
         Activity mContex;
+        ProgressDialog progressDialog=new ProgressDialog(getActivity());
+
 
         public MyAsyncTask(Activity context) {
             this.mContex = context;
@@ -314,6 +297,15 @@ public class CreateLeadFragment extends Fragment {
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage("Please wait..");
+            progressDialog.setTitle("Loading..");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+
+        @Override
         protected void onPostExecute(String result) {
 
             System.out.println("result=" + result);
@@ -321,6 +313,7 @@ public class CreateLeadFragment extends Fragment {
             // if (result.equals("Lead created successfully"+","+"leadDetailsId"+""+","+"imageUrl"+"\n")) {
 
             Toast.makeText(getContext(), "Created Successfully", Toast.LENGTH_SHORT).show();
+            progressDialog.dismiss();
 
             Intent main = new Intent(getContext(), MainActivity.class);
             startActivity(main);
