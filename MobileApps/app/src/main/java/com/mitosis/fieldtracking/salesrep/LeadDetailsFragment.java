@@ -54,10 +54,6 @@ public class LeadDetailsFragment extends Fragment implements OnMapReadyCallback,
     EditText description;
     String leadid;
 
-    SharedPreferences sharedpreferences;
-    public static final String mypreference = "mypref";
-    public static final String Name = "nameKey";
-
     JSONObject jsonObject;
     public String lat1, lng1;
     RelativeLayout submit;
@@ -82,12 +78,6 @@ public class LeadDetailsFragment extends Fragment implements OnMapReadyCallback,
         description = (EditText) v.findViewById(R.id.hname);
         assignDate = (TextView) v.findViewById(R.id.text_assigntime);
         leadImage = (ImageView) v.findViewById(R.id.image_detail);
-
-        sharedpreferences = getContext().getSharedPreferences(mypreference,
-                Context.MODE_PRIVATE);
-        if (sharedpreferences.contains(Name)) {
-            description.setText(sharedpreferences.getString(Name, ""));
-        }
 
         String name = getArguments().getString("Name");
         String statuz = getArguments().getString("Status");
@@ -115,7 +105,7 @@ public class LeadDetailsFragment extends Fragment implements OnMapReadyCallback,
         Picasso.with(getContext())
                 .load(images)
                 .placeholder(R.drawable.placeholder)   // optional
-                .error(R.drawable.error)     // optional
+                .error(R.drawable.profile)     // optional
                 .resize(400, 400)                        // optional
                 .into(leadImage);
 
@@ -146,18 +136,6 @@ public class LeadDetailsFragment extends Fragment implements OnMapReadyCallback,
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
-        });
-
-        description.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction (TextView v,int actionId, KeyEvent event){
-                boolean handled = false;
-                if (actionId == EditorInfo.IME_ACTION_SEND) {
-                   // sendMessage();
-                    handled = true;
-                }
-                return handled;
             }
         });
 
@@ -277,21 +255,6 @@ else{
     public void onLowMemory() {
         super.onLowMemory();
         mMapView.onLowMemory();
-    }
-
-    public void Save(View view) {
-        String n = description.getText().toString();
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString(Name, n);
-        editor.commit();
-    }
-    public void Get(View view) {
-        sharedpreferences = getContext().getSharedPreferences(mypreference,
-                Context.MODE_PRIVATE);
-
-        if (sharedpreferences.contains(Name)) {
-            description.setText(sharedpreferences.getString(Name, ""));
-        }
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

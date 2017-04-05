@@ -19,8 +19,6 @@ public class LoginActivity extends AppCompatActivity {
     TextView login;
     EditText editmail;
     EditText editpassword;
-    String email;
-    String password;
     Context context;
 
     private CheckBox saveDetailsCheck;
@@ -45,9 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         savePrefsEditor = savePreferences.edit();
 
         saveLogin = savePreferences.getBoolean("saveLogin", false);
-        if (saveLogin == true)
-
-        {
+        if (saveLogin == true){
             editpassword.setText(savePreferences.getString("password", ""));
             editmail.setText(savePreferences.getString("email", ""));
             saveDetailsCheck.setChecked(true);
@@ -58,7 +54,15 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (editmail.getText().toString().equals("fieldtrackingadmin@yopmail.com") &&
                         editpassword.getText().toString().equals("admin123")) {
-
+                    if (saveDetailsCheck.isChecked()) {
+                        savePrefsEditor.putBoolean("saveLogin", true);
+                        savePrefsEditor.putString("email", editmail.getText().toString());
+                        savePrefsEditor.putString("password", editpassword.getText().toString());
+                        savePrefsEditor.commit();
+                    } else {
+                        savePrefsEditor.clear();
+                        savePrefsEditor.commit();
+                    }
                     Intent create = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(create);
 
@@ -66,17 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Email or Password incorrect", Toast.LENGTH_SHORT).show();
                 }
 
-                if (saveDetailsCheck.isChecked()) {
-                    savePrefsEditor.putBoolean("saveLogin", true);
-                    savePrefsEditor.putString("email", email);
-                    savePrefsEditor.putString("password", password);
-                    savePrefsEditor.commit();
 
-                } else {
-
-                    savePrefsEditor.clear();
-                    savePrefsEditor.commit();
-                }
             }
         });
     }

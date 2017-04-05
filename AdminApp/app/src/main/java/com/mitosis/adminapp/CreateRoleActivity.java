@@ -39,6 +39,7 @@ public class CreateRoleActivity extends Fragment {
     ImageView leadimage;
     EditText firstName, lastName, userName, phoneNumber, email;
     JSONObject jsonObject;
+    int selectedRadiobutton=R.id.radio_nationalManager;
 
     String registerUserURL = "http://202.61.120.46:9081/FieldTracking/users/createEmployee";
 
@@ -52,8 +53,9 @@ public class CreateRoleActivity extends Fragment {
         role = (TextView) view.findViewById(R.id.text_designation);
         firstName = (EditText) view.findViewById(R.id.hname);
         lastName = (EditText) view.findViewById(R.id.edit_lastname);
-        userName = (EditText) view.findViewById(R.id.edit_userName);
+//        userName = (EditText) view.findViewById(R.id.edit_userName);
         phoneNumber = (EditText) view.findViewById(R.id.edit_phone);
+        email = (EditText) view.findViewById(R.id.edit_email);
         leadimage = (ImageView) view.findViewById(R.id.leadimage);
         submit = (TextView) view.findViewById(R.id.text_submit);
         Designation = (TextView) view.findViewById(R.id.text_designation);
@@ -63,29 +65,43 @@ public class CreateRoleActivity extends Fragment {
             public void onClick(View v) {
                String sFirstname= firstName.getText().toString();
                 String sLastname=  lastName.getText().toString();
-                String sUsername= userName.getText().toString();
+//                String sUsername= userName.getText().toString();
                 String sDesignation= Designation.getText().toString();
                 String sPhone= phoneNumber.getText().toString();
-                if (!sFirstname.isEmpty()||!sLastname.isEmpty()||!sUsername.isEmpty()||!sPhone.isEmpty()||!sDesignation.isEmpty()){
-                 if (sUsername.contains("@")){
-                     jsonObject = new JSONObject();
-                     try {
-                         jsonObject.put("firstName",sFirstname );
-                         jsonObject.put("lastName", sLastname);
-                         jsonObject.put("userName", sUsername);
-                         jsonObject.put("emailId", "fieldtrackingadmin@yopmail.com");
-                         jsonObject.put("role",sDesignation );
-                         jsonObject.put("password", "admin123");
-                         jsonObject.put("createdBy", "fieldtrackingadmin@yopmail.com");
-                         jsonObject.put("telephoneNumber", "99161193");
-                         jsonObject.put("mobileNumber",sPhone );
-                         new MyAsyncTask(getActivity()).execute();
-                     } catch (Exception e) {
+                String sEmail= email.getText().toString();
 
+                if (!sFirstname.isEmpty()&&!sLastname.isEmpty()&&!sPhone.isEmpty()
+                        &&!sEmail.isEmpty() &&!sDesignation.isEmpty()){
+                  if (!sEmail.contains("@")){
+                         email.requestFocus();
+                         Toast.makeText(getActivity(), "Invalid Email ID", Toast.LENGTH_SHORT).show();
+
+                  }else if (sPhone.length()!=10){
+                      phoneNumber.requestFocus();
+                      Toast.makeText(getActivity(), "Mobile number should not be less/greater than 10-digits", Toast.LENGTH_SHORT).show();
+                  }else{
+                      if (sFirstname.length()>20){
+                          sFirstname=sFirstname.substring(0,19);
+                      }if (sLastname.length()>20){
+                          sLastname=sLastname.substring(0,19);
+                      }
+                      jsonObject = new JSONObject();
+                      try {
+                          jsonObject.put("firstName",sFirstname );
+                          jsonObject.put("lastName", sLastname);
+                          jsonObject.put("userName", sPhone);
+                          jsonObject.put("emailId", sEmail);
+                          jsonObject.put("role",sDesignation );
+                          jsonObject.put("password", "admin123");
+                          jsonObject.put("createdBy", "fieldtrackingadmin@yopmail.com");
+                             jsonObject.put("telephoneNumber", "99161193");
+                             jsonObject.put("mobileNumber",sPhone );
+                             new MyAsyncTask(getActivity()).execute();
+                         } catch (Exception e) {
+
+                         }
                      }
-                 }else {
-                     Toast.makeText(getActivity(), "Invaild username.Please make sure username is email ID or not.", Toast.LENGTH_SHORT).show();
-                 }
+
                 }else{
                     Toast.makeText(getActivity(), "Please fill all fields.", Toast.LENGTH_SHORT).show();
                 }
@@ -105,21 +121,20 @@ public class CreateRoleActivity extends Fragment {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.dialog, null);
+        sort = (RadioGroup) dialogView.findViewById(R.id.sort);
+        sort.check(selectedRadiobutton);
         dialogBuilder.setView(dialogView);
         dialogBuilder.setTitle("Choose Designation");
-        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+        dialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                sort = (RadioGroup) dialogView.findViewById(R.id.sort);
                 int selectedId = sort.getCheckedRadioButtonId();
                 natioalManager = (RadioButton) dialogView.findViewById(R.id.radio_nationalManager);
                 regionalManager = (RadioButton) dialogView.findViewById(R.id.radio_regionalManager);
                 sales = (RadioButton) dialogView.findViewById(R.id.radio_sales);
-
+                selectedRadiobutton=selectedId;
                 switch (selectedId) {
-
                     case R.id.radio_nationalManager:
                         role.setText("National Manager");
-
                         break;
 
                     case R.id.radio_regionalManager:
@@ -149,13 +164,6 @@ public class CreateRoleActivity extends Fragment {
         public MyAsyncTask(Activity context) {
             this.mContex = context;
         }
-
-        protected String doInBackground(String... params) {
-
-            String WEB_RESULT = Utils.WebCall(registerUserURL, jsonObject.toString());
-            return WEB_RESULT;
-        }
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -164,32 +172,34 @@ public class CreateRoleActivity extends Fragment {
             progressDialog.setCancelable(false);
             progressDialog.show();
         }
+        @Override
+        protected String doInBackground(String... params) {
 
+            String WEB_RESULT = Utils.WebCall(registerUserURL, jsonObject.toString());
+            return WEB_RESULT;
+        }
         @Override
         protected void onPostExecute(String result) {
 
             System.out.println("result=" + result);
-
-            if (result.equals("")) {
-                Toast.makeText(getContext(), "Created Successfully", Toast.LENGTH_SHORT).show();
-
-                Fragment fragment = new EmployeeListActivity();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_layout_for_activity_navigation, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-
-                firstName.setText("");
-                lastName.setText("");
-                userName.setText("");
-                Designation.setText("");
-                phoneNumber.setText("");
+            if (result.equals("IO Exception")) {
                 progressDialog.dismiss();
-            } else {
-
-                Toast.makeText(getContext(), "Created Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Please check Internet connection", Toast.LENGTH_LONG).show();
+            }else{
+                if (result.equals("")) {
+                    Toast.makeText(getContext(), "Created Successfully", Toast.LENGTH_SHORT).show();
+                    firstName.setText("");
+                    lastName.setText("");
+                    Designation.setText("");
+                    phoneNumber.setText("");
+                    progressDialog.dismiss();
+                    getFragmentManager().popBackStackImmediate();
+                } else {
+                    Toast.makeText(getContext(), "Creation failed.Please try again.", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                }
             }
+
         }
     }
 

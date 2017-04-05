@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:id="@+id/profilelayout"
+            android:background="@drawable/buildbg"
+            android:layout_marginTop="0dp">
+
+            <TextView
+                android:text="Dr.Mary Sanchez"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="85dp"
+                android:textSize="20dp"
+                android:textColor="#ffffff"
+                android:layout_marginTop="45dp"
+                android:id="@+id/doc_name" />
+
+            <TextView
+                android:text="Chief Medical Officer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="85dp"
+                android:textColor="#fcf8f8"
+                android:layout_marginTop="75dp"
+                android:id="@+id/textView2" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/doctor2"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="45dp"
+                android:id="@+id/imageView13" />
+
+        </RelativeLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rellayout"
+        android:layout_below="@+id/profilelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="130dp"
+            android:id="@+id/relativeLayout2">
+
+            <TextView
+                android:text="ADDRESS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:textSize="14dp"
+                android:textColor="#353030"
+                android:id="@+id/textView5" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="150dp"
+            android:id="@+id/relativeLayout3">
+
+            <TextView
+                android:text="No.3 New Life Hospital"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46dp"
+                android:layout_marginTop="3dp"
+                android:id="@+id/addl_1" />
+
+            <TextView
+                android:text="Velachey Main Road"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46dp"
+                android:layout_marginTop="24dp"
+                android:id="@+id/addl_2" />
+
+            <!--<TextView-->
+            <!--android:text="Chennai"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="153dp"-->
+            <!--android:layout_marginTop="23dp"-->
+            <!--android:id="@+id/add_city" />-->
+            <TextView
+                android:text="TamilNadu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/addl_2"
+                android:layout_marginLeft="46dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/add_state" />
+            <!-- <TextView
+                 android:text="600073"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_below="@+id/addl_2"
+                 android:layout_marginLeft="150dp"
+                 android:layout_marginTop="5dp"
+                 android:id="@+id/add_pin" />-->
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="220dp"
+            android:id="@+id/relativeLayout4">
+
+            <TextView
+                android:text="2.5 "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="68dp"
+                android:layout_marginTop="7dp"
+                android:id="@+id/text_km" />
+            <TextView
+                android:text="Meters away"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="96dp"
+                android:layout_marginTop="7dp"
+                android:id="@+id/text_kms" />
+            <TextView
+                android:text="Attended"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="217dp"
+                android:layout_marginTop="7dp"
+                android:id="@+id/doc_status" />
+
+            <TextView
+                android:text="Call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="315dp"
+                android:layout_marginTop="7dp"
+                android:id="@+id/text_call" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/marker"
+                android:layout_marginLeft="46dp"
+                android:layout_marginTop="4dp"
+                android:id="@+id/imageView3" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/phonepurple"
+                android:layout_marginLeft="290dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/call" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/cyclegreen"
+                android:layout_marginLeft="192dp"
+                android:layout_marginTop="4dp"
+                android:id="@+id/imageView5" />
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="310dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="250dp"
+            android:layout_marginLeft="60dp"
+            android:background="@android:color/darker_gray"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="523dp"
+            android:background="#f2b10c"
+            android:id="@+id/relativeLayout5">
+
+            <TextView
+                android:text="SUBMIT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="7dp"
+                android:textColor="#ffffff"
+                android:textSize="23dp"
+                android:id="@+id/text_submit" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginTop="260dp">
+
+            <TextView
+                android:text="MAPVIEW"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:textSize="14dp"
+                android:textColor="#353030"
+                android:layout_marginTop="0dp"
+                android:id="@+id/textView3" />
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/map"
+                android:layout_width="350dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="46dp"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="485dp">
+
+            <EditText
+                android:id="@+id/hname"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:hint="Write your description here...."
+                android:inputType="textAutoComplete"
+                android:layout_marginLeft="46dp"
+                android:maxLines="1"
+                android:textColorHint="#dad6d6"
+                android:singleLine="true" />
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="460dp">
+            <TextView
+                android:text="DESCRIPTION"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textColor="#353030"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="0dp"
+                android:id="@+id/textView" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="420dp"/>
+        <TextView
+            android:text="ASSIGNED TO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:textColor="#353030"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="400dp"
+            android:id="@+id/text_assign" />
+        <TextView
+            android:text="08/03/2017,12:28AM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:layout_marginLeft="46dp"
+            android:layout_marginTop="425dp"
+            android:id="@+id/text_assigntime" />
+    </RelativeLayout>
+    </ScrollView>
+    </RelativeLayout>

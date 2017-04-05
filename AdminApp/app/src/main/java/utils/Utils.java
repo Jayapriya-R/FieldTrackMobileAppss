@@ -84,17 +84,18 @@ public class Utils {
         } catch (UnsupportedEncodingException e) {
             // writing error to Log
             e.printStackTrace();
+            respCallBack = "UnsupportedEncoding Exception";
+
         } catch (ClientProtocolException e) {
             // writing exception to log
             e.printStackTrace();
+            respCallBack = "ClientProtocol Exception";
+
         } catch (IOException e) {
 
-            respCallBack = null;
+            respCallBack = "IO Exception";
         }
 
         return respCallBack;
-
     }
-
-
 }

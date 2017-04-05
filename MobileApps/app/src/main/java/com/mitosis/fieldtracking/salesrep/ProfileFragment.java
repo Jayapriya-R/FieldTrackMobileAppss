@@ -1,6 +1,8 @@
 package com.mitosis.fieldtracking.salesrep;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -21,11 +24,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import static com.mitosis.fieldtracking.salesrep.Constants.appointmentDate;
+import static com.mitosis.fieldtracking.salesrep.Constants.leadImage;
 
 /**
  * Created by mitosis on 22/3/17.
@@ -33,27 +40,20 @@ import java.util.ArrayList;
 
 public class ProfileFragment extends Fragment {
 
-    TextView firstname,lastname,telenum,mobnum,email,role,username,changepassword,createdby,userid;
+    TextView firstname,lastname,telenum,mobnum,email,role,username,changepassword,createdby,userid,Done;
+    ImageView leadimage;
 
-    public static ArrayList<String> firstName=new ArrayList<>();
-    public static ArrayList<String> lastName=new ArrayList<>();
-    public static ArrayList<String> teleNum=new ArrayList<>();
-    public static ArrayList<String> mobNum=new ArrayList<>();
-    public static ArrayList<String> eMail=new ArrayList<>();
-    public static ArrayList<String> Role=new ArrayList<>();
-    public static ArrayList<String> userName=new ArrayList<>();
-    public static ArrayList<String> changePassword=new ArrayList<>();
-    public static ArrayList<String> createdBy=new ArrayList<>();
-    public static ArrayList<String> userId=new ArrayList<>();
+    public static String profileImage,firstName,lastName,teleNum,mobNum,eMail,Role,userName,changePassword,createdBy,userId;
+
+    String registerUserURL;
+    String images;
 
     JSONObject jsonObject;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-
         View view = inflater.inflate(R.layout.profile, container, false);
-
 
         firstname = (TextView) view.findViewById(R.id.text_firstname);
         lastname = (TextView) view.findViewById(R.id.text_lastname);
@@ -65,21 +65,40 @@ public class ProfileFragment extends Fragment {
         changepassword = (TextView) view.findViewById(R.id.text_changepass);
         createdby = (TextView) view.findViewById(R.id.text_created);
         userid = (TextView) view.findViewById(R.id.text_userid);
+        Done = (TextView) view.findViewById(R.id.text_done);
+        leadimage = (ImageView) view.findViewById(R.id.leadimage);
 
-        new RegisterTask().execute(Constants.profile);
+        new RegisterTask().execute();
 
         changepassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                 images =profileImage;
+
+                Bundle args = new Bundle();
                 Fragment fragment = new ResetpasswordFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+
+                args.putString("imageUrl",images);
+
+                fragment.setArguments(args);
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_layout_for_activity_navigation, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
+
+        Done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent main=new Intent(getContext(),MainActivity.class);
+                startActivity(main);
+            }
+        });
+
 
         return view;
     }
@@ -95,7 +114,7 @@ public class ProfileFragment extends Fragment {
 
                 RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
 
-                String registerUserURL = params[0];
+                 registerUserURL = "http://202.61.120.46:9081/FieldTracking/users/getProfileDetails?userName="+ LoginPageActivity.Email.getText().toString();
 
                 StringRequest registerRequest = new StringRequest(Request.Method.GET, registerUserURL, new Response.Listener<String>() {
                     @Override
@@ -104,17 +123,17 @@ public class ProfileFragment extends Fragment {
 
                             jsonObject = new JSONObject(response);
 
-                                 firstName.add(jsonObject.getString("firstName"));
-                                lastName.add(jsonObject.getString("lastName"));
-                                teleNum.add(jsonObject.getString("telephoneNumber"));
-                                mobNum.add(jsonObject.getString("mobileNumber"));
-                                eMail.add(jsonObject.getString("emailId"));
-                                Role.add(jsonObject.getString("role"));
-                                userName.add(jsonObject.getString("userName"));
-                                changePassword.add(jsonObject.getString("password"));
-                                createdBy.add(jsonObject.getString("createdBy"));
-                                userId.add(jsonObject.getString("userId"));
-
+                                firstName=(jsonObject.getString("firstName"));
+                                lastName=(jsonObject.getString("lastName"));
+                                teleNum=(jsonObject.getString("telephoneNumber"));
+                                mobNum=(jsonObject.getString("mobileNumber"));
+                                eMail=(jsonObject.getString("emailId"));
+                                Role=(jsonObject.getString("role"));
+                                userName=(jsonObject.getString("userName"));
+                                changePassword=(jsonObject.getString("password"));
+                                createdBy=(jsonObject.getString("createdBy"));
+                                userId=(jsonObject.getString("userId"));
+                               profileImage = jsonObject.getString("imageUrl");
 
                         } catch (JSONException e) {
                         }
@@ -142,16 +161,7 @@ public class ProfileFragment extends Fragment {
                 progressDialog.setTitle("Loading..");
                 progressDialog.setCancelable(false);
                 progressDialog.show();
-                firstName.clear();
-                lastName.clear();
-                teleNum.clear();
-                mobNum.clear();
-                eMail.clear();
-                Role.clear();
-                userName.clear();
-                changePassword.clear();
-                createdBy.clear();
-                userId.clear();
+
             }
 
             @Override
@@ -166,6 +176,13 @@ public class ProfileFragment extends Fragment {
                 username.setText(userName.toString().replace("[","").replace("]",""));
                 createdby.setText(createdBy.toString().replace("[","").replace("]",""));
                 userid.setText(userId.toString().replace("[","").replace("]",""));
+
+                Picasso.with(getContext())
+                        .load(profileImage)
+                        .placeholder(R.drawable.placeholder)   // optional
+                        .error(R.drawable.profile)     // optional
+                        .resize(400,400)                        // optional
+                        .into(leadimage);
                 progressDialog.dismiss();
             }
         }
@@ -176,7 +193,7 @@ public class ProfileFragment extends Fragment {
         getActivity().setTitle("PROFILE");
 
         MenuItem item = menu.findItem(R.id.action_mainMenu3);
-        item.setVisible(false);
+        item.setVisible(true);
         MenuItem item2 = menu.findItem(R.id.action_mainMenu2);
         item2.setVisible(false);
         MenuItem item3 = menu.findItem(R.id.action_search);
@@ -184,5 +201,44 @@ public class ProfileFragment extends Fragment {
         MenuItem item4 = menu.findItem(R.id.action_details);
         item4.setVisible(false);
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_mainMenu3:
+
+                String fName = firstName;
+                String lName = lastName;
+                String telenumber = teleNum;
+                String mobilenumber = mobNum;
+                String emaiL = eMail;
+                String Username =userName;
+                String images =profileImage;
+
+                Bundle args = new Bundle();
+                Fragment fragment = new ProfileUpdateFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+
+                args.putString("firstName", fName);
+                args.putString("lastName", lName);
+                args.putString("telephoneNumber", telenumber);
+                args.putString("mobileNumber", mobilenumber);
+                args.putString("emailId", emaiL);
+                args.putString("userName",Username);
+                args.putString("imageUrl",images);
+
+                fragment.setArguments(args);
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_layout_for_activity_navigation, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+                return true;
+
+                default:
+
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

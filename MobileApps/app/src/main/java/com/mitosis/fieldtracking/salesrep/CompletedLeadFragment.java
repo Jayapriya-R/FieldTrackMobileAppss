@@ -2,6 +2,7 @@ package com.mitosis.fieldtracking.salesrep;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
@@ -287,9 +288,14 @@ public class CompletedLeadFragment extends Fragment  implements LocationListener
 
     }
     private class RegisterTask extends AsyncTask<String, Void, Void> {
-
-        public RegisterTask() {
-
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage("Please wait..");
+            progressDialog.setTitle("Loading..");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
         }
 
         @Override
@@ -359,6 +365,12 @@ public class CompletedLeadFragment extends Fragment  implements LocationListener
             });
             requestQueue.add(registerRequest);
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressDialog.dismiss();
         }
     }
 }

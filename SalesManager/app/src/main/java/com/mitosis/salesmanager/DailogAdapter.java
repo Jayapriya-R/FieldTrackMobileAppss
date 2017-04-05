@@ -1,0 +1,42 @@
+package com.mitosis.salesmanager;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+/**
+ * Created by mitosis on 17/3/17.
+ */
+
+public class DailogAdapter extends ArrayAdapter<String> {
+
+    private final Context context;
+
+    ArrayList<String> firstname = new ArrayList<String>();
+    //ArrayList<String> lastnamee = new ArrayList<String>();
+
+    ArrayList<String> userIds = new ArrayList<String>();
+   public static String assigns;
+    public DailogAdapter(Context context, ArrayList<String> contactName, ArrayList<String> usersId) {
+        super(context, R.layout.dailogadap, contactName);
+        this.getContext();
+        this.context = context;
+        this.firstname = contactName;
+      //  this.lastnamee=lastnamee;
+        this.userIds=usersId;
+    }
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.dailogadap, parent, false);
+        TextView txt=(TextView)rowView.findViewById(R.id.txtdailog);
+        txt.setText(firstname.get(position));
+        assigns=userIds.get(position);
+        return  rowView;
+    }
+}

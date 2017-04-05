@@ -2,6 +2,7 @@ package com.mitosis.fieldtracking.salesrep;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.TextViewCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -35,6 +37,8 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -44,6 +48,7 @@ import java.util.ArrayList;
 import utils.Utils;
 
 import static android.app.Activity.RESULT_OK;
+import static com.mitosis.fieldtracking.salesrep.LoginPageActivity.loginuserid;
 
 public class CreateLeadFragment extends Fragment {
 
@@ -95,35 +100,50 @@ public class CreateLeadFragment extends Fragment {
         leadimage = (ImageView) view.findViewById(R.id.leadimage);
         create_lead = (Button) view.findViewById(R.id.layout_create);
         spnr = (TextView) view.findViewById(R.id.btn_spinner);
-                create_lead.setOnClickListener(new View.OnClickListener() {
+
+        create_lead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("contactName", Clientname.getText().toString());
-                    jsonObject.put("leadName", Desitination.getText().toString());
-                    jsonObject.put("addressLine1", mAddress.getText().toString());
-                    jsonObject.put("addressLine2", mAddress2.getText().toString());
-                    jsonObject.put("city", city.getText().toString());
-                    jsonObject.put("state", state.getText().toString());
-                    jsonObject.put("country", "India");
-                    jsonObject.put("zipCode", zipCode.getText().toString());
-                    jsonObject.put("createdBy", "26");
-                    jsonObject.put("assignedTo", "26");
-                    jsonObject.put("landMark", "windmare appt");
-                    jsonObject.put("telephoneNumber", "7848938499");
-                    jsonObject.put("mobileNumber", mPhone.getText().toString());
-                    jsonObject.put("email", "ghousia.khan@gmail.com");
-                    jsonObject.put("imageType", "jpg");
-                    jsonObject.put("imageBase64", encodedImage);
-                    jsonObject.put("latitide", latitude);
-                    jsonObject.put("longitude", longitude);
+                String sClientname= Clientname.getText().toString();
+                String sDestination=  Desitination.getText().toString();
+                String sAddress= mAddress.getText().toString();
+                String sAddress2= mAddress2.getText().toString();
+                String scity= city.getText().toString();
+                String sstate= state.getText().toString();
+                String szipcode= zipCode.getText().toString();
+                String sPhone= mPhone.getText().toString();
+                if (!sClientname.isEmpty()&&!sDestination.isEmpty()&&!sAddress.isEmpty()
+                        &&!sAddress2.isEmpty()&&!scity.isEmpty()&&!sstate.isEmpty()&&!szipcode.isEmpty()
+                        &&!sPhone.isEmpty()){
 
-                    new MyAsyncTask(getActivity()).execute();
+                    jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put("contactName", sClientname);
+                        jsonObject.put("leadName", sDestination);
+                        jsonObject.put("addressLine1",sAddress);
+                        jsonObject.put("addressLine2", sAddress2);
+                        jsonObject.put("city", scity);
+                        jsonObject.put("state", sstate);
+                        jsonObject.put("country", "India");
+                        jsonObject.put("zipCode",szipcode);
+                        jsonObject.put("createdBy", "26");
+                        jsonObject.put("assignedTo", "26");
+                        jsonObject.put("landMark", "windmare appt");
+                        jsonObject.put("telephoneNumber", "7848938499");
+                        jsonObject.put("mobileNumber",sPhone);
+                        jsonObject.put("email", "ghousia.khan@gmail.com");
+                        jsonObject.put("imageType", "jpg");
+                        jsonObject.put("imageBase64", encodedImage);
+                        jsonObject.put("latitide", latitude);
+                        jsonObject.put("longitude", longitude);
+                        new MyAsyncTask().execute();
 
-                } catch (Exception e) {
+                    } catch (Exception e) {
 
+                    }
+                }else{
+                    Toast.makeText(getActivity(), "Please fill all fields.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -281,28 +301,44 @@ public class CreateLeadFragment extends Fragment {
 
     class MyAsyncTask extends AsyncTask<String, String, String> {
         Activity mContex;
-        ProgressDialog progressDialog=new ProgressDialog(getActivity());
-
-
-        public MyAsyncTask(Activity context) {
-            this.mContex = context;
-        }
-
-        protected String doInBackground(String... params) {
-
-            registerUserURL = Constants.create;
-
-            String WEB_RESULT = Utils.WebCall(registerUserURL, jsonObject.toString());
-            return WEB_RESULT;
-        }
-
+        String createResponse;
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        AlertDialog.Builder alertdialog=new AlertDialog.Builder(getActivity());
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            alertdialog.setIcon(android.R.drawable.ic_menu_gallery );
+            alertdialog.setTitle("IMAGE UPLOAD");
+            alertdialog.setMessage("Image is not selected.Do you want to upload image?");
+            alertdialog.setNegativeButton("Later", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            alertdialog.setPositiveButton("Upload Image", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    showFileChooser();
+                }
+            });
+            alertdialog.create();
             progressDialog.setMessage("Please wait..");
             progressDialog.setTitle("Loading..");
             progressDialog.setCancelable(false);
             progressDialog.show();
+        }
+        protected String doInBackground(String... params) {
+            registerUserURL = Constants.create;
+
+            String WEB_RESULT = Utils.WebCall(registerUserURL, jsonObject.toString());
+            try {
+                JSONObject resultobj=new JSONObject(WEB_RESULT.replace("[","").replace("]",""));
+                createResponse=resultobj.getString("status");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return createResponse;
         }
 
         @Override
@@ -310,15 +346,19 @@ public class CreateLeadFragment extends Fragment {
 
             System.out.println("result=" + result);
 
-            // if (result.equals("Lead created successfully"+","+"leadDetailsId"+""+","+"imageUrl"+"\n")) {
+            if (result.equals("Lead created successfully")) {
+                progressDialog.dismiss();
+                Toast.makeText(getContext(), "Lead Created Successfully", Toast.LENGTH_SHORT).show();
+                getActivity().recreate();
+            }
+            else {
+                progressDialog.dismiss();
+                alertdialog.show();
 
-            Toast.makeText(getContext(), "Created Successfully", Toast.LENGTH_SHORT).show();
-            progressDialog.dismiss();
-
-            Intent main = new Intent(getContext(), MainActivity.class);
-            startActivity(main);
+            }
 
         }
+
     }
 
     @Override

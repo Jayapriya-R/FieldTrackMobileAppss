@@ -158,8 +158,7 @@
                 android:layout_toRightOf="@+id/call"
                 android:id="@+id/text_call" />
 
-
-</RelativeLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -221,16 +220,14 @@
 
             <EditText
                 android:id="@+id/hname"
-                android:layout_width="350dp"
-                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:hint="Write your description here...."
-                android:inputType="textAutoComplete"
+                android:inputType="textMultiLine"
                 android:layout_marginLeft="46dp"
-                android:maxLines="1"
                 android:background="@null"
-                android:imeOptions="actionSearch"
-                android:textColorHint="#dad6d6"
-                android:singleLine="true" />
+                android:layout_marginTop="10dp"
+                android:textColorHint="#dad6d6" />
 
         </RelativeLayout>
         <RelativeLayout
@@ -253,7 +250,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="420dp"/>
         <TextView
-            android:text="ASSIGNED TO"
+            android:text="ASSIGNED ON"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:textStyle="bold"

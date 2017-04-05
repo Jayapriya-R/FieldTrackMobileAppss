@@ -23,7 +23,6 @@
             android:layout_height="35dp"
             android:text="National Manager"
             android:layout_marginLeft="20dp"
-            android:checked="true"
             android:buttonTint="#0d5599"/>
 
         <RadioButton

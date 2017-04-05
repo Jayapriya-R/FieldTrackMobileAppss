@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    android:background="@drawable/app_bg"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rel1"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/buildbg"
+                android:id="@+id/image"
+                android:scaleType="fitXY" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:src="@drawable/contprofile"
+                android:layout_marginTop="30dp"
+                android:foregroundGravity="center"
+                android:id="@+id/leadimage"
+                android:adjustViewBounds="false"
+                android:cropToPadding="false" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rel1">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:textColor="#444"
+                android:textSize="17dp"
+                android:layout_marginLeft="20dp"
+                android:text="NEW PASSWORD"
+                android:gravity="bottom"/>
+            <EditText
+                android:id="@+id/forgot_newpass"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:layout_below="@id/textView3"
+                android:textColorHint="#dfdfdf"
+                android:layout_marginLeft="50dp"
+                android:hint="Enter the New Password "
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/text_newpass"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:textStyle="bold"
+                android:textColor="#444"
+                android:layout_marginTop="20dp"
+                android:textSize="17dp"
+                android:layout_below="@id/forgot_newpass"
+                android:layout_marginLeft="20dp"
+                android:text="CONFIRM PASSWORD"
+                android:gravity="bottom"/>
+
+            <EditText
+                android:id="@+id/forgot_confirmpass"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:ems="10"
+                android:layout_marginTop="10dp"
+                android:inputType="textPassword"
+                android:layout_below="@id/text_newpass"
+                android:textColorHint="#dfdfdf"
+                android:layout_marginLeft="50dp"
+                android:hint="Enter the Confirm Password "
+                android:layout_alignParentRight="true"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#f59c02"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/relll"
+            android:id="@+id/rel_forgot"
+            >
+            <TextView
+                android:id="@+id/text_donepass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:text="SAVE" />
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

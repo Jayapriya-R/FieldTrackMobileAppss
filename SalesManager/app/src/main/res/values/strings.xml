@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">SalesManager</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="action_settings">SortBy</string>
+    <string name="defaultText">Choose the representive </string>
+    <string name="google_maps_key">AIzaSyAIpdfPyS3JA10d5wzfFhCwI8ZbSAlYX6M</string>
+    <string name="name">Enter a  name</string>
+    <string name="destination">Enter a  destination</string>
+    <string name="address">Enter a  address1</string>
+    <string name="addresss">Enter a  adress2</string>
+    <string name="city">Enter a  city</string>
+    <string name="state">Enter a  state</string>
+    <string name="pincode">Enter a  pincode</string>
+    <string name="moblieno">Enter a  moblieno</string>
+    <string name="rep">Enter  the  Salerepresentative</string>
+    <string name="title_activity_maps">Map</string>
+
+</resources>

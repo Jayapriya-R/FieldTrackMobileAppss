@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <RelativeLayout
+            android:layout_width="95dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="75dp">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                app:civ_border_color="@color/rosybrown"
+                app:civ_border_width="2dp"
+                android:src="@drawable/doctor2"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="95dp"
+            android:layout_height="75dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/rdocname"
+                android:layout_height="45dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/doconame"
+                    android:textSize="20dp"
+                    android:text="Dr. Prathap C Reddy"
+                    android:textStyle="normal|bold"
+                    android:layout_height="25dp" />
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/imageicon"
+                    android:src="@drawable/started"
+                    android:layout_marginLeft="195dp"
+                    android:layout_height="25dp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_below="@+id/rdocname"
+                android:layout_height="55dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Total:"
+                    android:textColor="@color/blue"
+                    android:id="@+id/totall"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="30dp"
+                    android:text=""
+                    android:textColor="@color/blue"
+                    android:id="@+id/total"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Completed:"
+                    android:id="@+id/completedd"
+                    android:textColor="@color/green"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"/>
+
+                <TextView
+                    android:layout_width="30dp"
+                    android:text=""
+                    android:id="@+id/completed"
+                    android:textColor="@color/green"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pendingg"
+                    android:textSize="12sp"
+                    android:text="Pending:"
+                    android:textColor="@color/red"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pending"
+                    android:text=""
+                    android:textColor="@color/red"
+                    />
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/rightanglearrow"
+                    android:layout_marginLeft="20dp"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

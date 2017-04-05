@@ -40,4 +40,6 @@ dependencies {
     compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
     compile 'com.google.android.gms:play-services:10.2.0'
     compile 'com.mcxiaoke.volley:library-aar:1.0.0'
+    compile 'com.android.support:multidex:1.0.1'
+
 }

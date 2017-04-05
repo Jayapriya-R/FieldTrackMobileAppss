@@ -80,25 +80,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 break;
 
             case R.id.nav_8:
-                AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
-//                LayoutInflater layoutInflater=(LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-//                View layout=layoutInflater.inflate(R.layout.today,null);
-//                alertDialog.setView(layout);
-                alertDialog.setTitle("Confirmation");
-                alertDialog.setMessage("       Do you want to signout?");
-                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                alertDialog.setPositiveButton("Signout", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                });
-                alertDialog.show();                args.putString(Constants.FRAG_D, "profile");
+                signout();
+                           args.putString(Constants.FRAG_D, "profile");
 
                 break;
         }
@@ -114,6 +97,24 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void signout(){
+        AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
+        alertDialog.setTitle("Confirmation");
+        alertDialog.setMessage("       Do you want to signout?");
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        alertDialog.setPositiveButton("Signout", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        alertDialog.show();
     }
     public void homeFragment() {
         try {

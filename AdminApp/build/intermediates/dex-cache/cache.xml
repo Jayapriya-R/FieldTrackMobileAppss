@@ -3,138 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="/home/mitosis/.android/build-cache/3d4258b74e4589b7d9c3a558b4cad563f25fed60/output/jars/classes.jar"
-        jumboMode="false"
+        jar="/home/mitosis/new-ws/FieldTrackMobileApps/AdminApp/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="662d7533b25a666c649c10a16b42edfb95f25a4f">
-        <dex dex="/home/mitosis/git/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_9afe43d5fd22cca88c35f38f19c06d4e043494e8/classes.dex" />
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="/home/mitosis/new-ws/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_da7ade30ad67d1ad5a6f0ec5b811c9663ef7f5dd/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/mitosis/Android/Sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-beta4/constraint-layout-solver-1.0.0-beta4.jar"
-        jumboMode="false"
+        jar="/home/mitosis/new-ws/FieldTrackMobileApps/AdminApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="0a9cb567dc008f570c28531720168f19148da965">
-        <dex dex="/home/mitosis/git/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.0-beta4_a6aaa5fa0478053ab44248287f8019a84ec0fe70/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/mitosis/.android/build-cache/1a401ee91c748ac0110398526434d855fa1e07a6/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="a3e61044038fb54cddf6b8dc79f41d2b57f42caf">
-        <dex dex="/home/mitosis/git/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_757ccacc0c10a597f013b202c8484dddd711ac64/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/mitosis/.android/build-cache/10cf738d8974183f03419cba203a9c2d8698a220/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="425c7b17887e5c3f8cbdf67ba171bc246f29b42c">
-        <dex dex="/home/mitosis/git/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_db17a592892ef60374def2ccc4dda8609ea8b274/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/mitosis/.android/build-cache/8cd29b14460bef07ffedf746e45c0a925f932f22/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="93c10d68ab5ea070f15782ae6d3a28d1f1d8f45e">
-        <dex dex="/home/mitosis/git/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_9676500774b8edff63d1aa87b923adab873d71da/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/mitosis/.android/build-cache/5a0e9a0e88417acbb3ba431a369f53a10a0e920e/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="93c1199fcb0a34b980e6fff8350daff62e696ec2">
-        <dex dex="/home/mitosis/git/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_bf04faf2867bc997a8d4f1dfd7b757950837779e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/mitosis/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.0/support-annotations-25.3.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="dd84903d2e1af25a6081ef9038ad863cb14ca3a0">
-        <dex dex="/home/mitosis/git/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.3.0_a20498f99c7fc4ae18662d59f37241ce35ceb00a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/mitosis/.android/build-cache/a1aa4cd968f69f204f8e978603a64c5c7d6c45ce/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="fbb206f7a119f66ce171d95aae1225a5b209a8b7">
-        <dex dex="/home/mitosis/git/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_71677e5fc9ae798e36e96a901c85642d376e6ec4/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/mitosis/.android/build-cache/b94ce1f556cf2f515bd950847a7e48bf1d92b341/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="9ab787a20aae245b5b3651ae0b9c38459eb37715">
-        <dex dex="/home/mitosis/git/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_09b8fc63e6cc717754caec59ee70088097afe579/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/mitosis/.android/build-cache/fb433273990a6cf69897de83ccd9c2162566ceeb/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="70f23cb87278f89aa51e6f57e8f0fd5266572d95">
-        <dex dex="/home/mitosis/git/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_65c6663c2f71efa0a96ab28443306e9729b2939b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/mitosis/.android/build-cache/8f9de48fba1a2a226ae7f5936f4fc2139bb32604/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="518768f3200963fbfec652f498da2c9d39245234">
-        <dex dex="/home/mitosis/git/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d48d24edf897660f3cd7f0a4dce99e9cac3a64e1/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/mitosis/.android/build-cache/85395a50bba1803e4078fcc0dc43dd06e6877a20/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/home/mitosis/git/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_926eb94d340baf613e328300be348e3ea0706464/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/mitosis/.android/build-cache/4669f7babaca27251165eda198829edd869d9363/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="5cc5ef8347a6bafa14556cbd35230aa9b3431bb0">
-        <dex dex="/home/mitosis/git/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f01080f71406217ea22db1bc9ac57bf3c7338b74/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/mitosis/.android/build-cache/aa03692188518cd0c39a982a0b54facb1b150622/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="4b746ef0fd46acb5aaf3d9ab9a4cec22c28d3211">
-        <dex dex="/home/mitosis/git/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_146bd8fb822927e52a1d9b91b617302127f311a1/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/mitosis/.android/build-cache/ca29b768c5ba099872b67127a333e5aa5ce48f95/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d6a04527c17597019dad82777c5094a3d60d1c33">
-        <dex dex="/home/mitosis/git/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0fb84a2cc6005037e102dfb5942628cf31de0bd5/classes.dex" />
+        sha1="54b9133ffb70d37c61718f5a700801363062501f">
+        <dex dex="/home/mitosis/new-ws/FieldTrackMobileApps/AdminApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c688860014f299698f2277def80a1033bb8b6117/classes.dex" />
     </item>
 
 </items>

@@ -14,8 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -29,6 +32,7 @@ public class ResetpasswordFragment extends Fragment {
 
     EditText oldPassword, newPassword,username;
     TextView submit;
+    ImageView leadimage;
 
     JSONObject jsonObject;
     String registerUserURL="http://202.61.120.46:9081/FieldTracking/users/changePassword";
@@ -41,12 +45,20 @@ public class ResetpasswordFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.resetpassword, container, false);
 
-
         username = (EditText)view.findViewById(R.id.edit_username);
         oldPassword = (EditText)view.findViewById(R.id.edit_oldpass);
         newPassword = (EditText)view.findViewById(R.id.edit_newpass);
         submit = (TextView)view.findViewById(R.id.text_donepass);
+        leadimage=(ImageView)view.findViewById(R.id.changeleadimage);
 
+        String images = getArguments().getString("imageUrl");
+
+        Picasso.with(getContext())
+                .load(images)
+                .placeholder(R.drawable.placeholder)   // optional
+                .error(R.drawable.profile)     // optional
+                .resize(400, 400)                        // optional
+                .into(leadimage);
 
         submit.setOnClickListener(new View.OnClickListener() {
 

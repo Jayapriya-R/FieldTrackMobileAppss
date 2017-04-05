@@ -24,7 +24,7 @@ import java.io.UnsupportedEncodingException;
 
 public class Utils {
 
-    static String respCallBack;
+    static String respCallBack="dgdfs";
     static InputStream is = null;
 
     static HttpClient httpClient;
@@ -83,12 +83,16 @@ public class Utils {
         } catch (UnsupportedEncodingException e) {
             // writing error to Log
             e.printStackTrace();
+            respCallBack = "UnsupportedEncoding Exception";
+
         } catch (ClientProtocolException e) {
             // writing exception to log
             e.printStackTrace();
+            respCallBack = "ClientProtocol Exception";
+
         } catch (IOException e) {
 
-            respCallBack = null;
+            respCallBack = "IO Exception";
         }
 
         return respCallBack;

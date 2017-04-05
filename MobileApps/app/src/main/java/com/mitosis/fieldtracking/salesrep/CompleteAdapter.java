@@ -183,15 +183,15 @@ public class CompleteAdapter extends ArrayAdapter<String>{
         });
 
         Picasso.with(getContext())
-                .load(imagesArr.get(position))
+                .load(FavouritesAdapter.imagesArr.get(position))
                 .placeholder(R.drawable.placeholder)   // optional
-                .error(R.drawable.error)     // optional
+                .error(R.drawable.profile)     // optional
                 .resize(400,400)                        // optional
                 .into(imageLead);
 
         start.setText(statusArr.get(position));
         text_name.setText(nameArr.get(position));
-        milez.setText(dinstances.get(position)+" "+"Meters Away");
+        milez.setText(FavouritesAdapter.distances.get(position)+" "+"Meters Away");
 
         return rowView;
 

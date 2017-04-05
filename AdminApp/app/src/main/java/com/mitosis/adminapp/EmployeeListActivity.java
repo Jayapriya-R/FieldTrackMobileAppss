@@ -89,7 +89,7 @@ public class EmployeeListActivity extends Fragment {
         new RegisterTask().execute(listEmployee_URL);
 
 
-         fab = (FloatingActionButton)view. findViewById(R.id.fab);
+        fab = (FloatingActionButton)view. findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -227,22 +227,18 @@ public class EmployeeListActivity extends Fragment {
         final View dialogView = inflater.inflate(R.layout.sort, null);
         dialogBuilder.setView(dialogView);
         dialogBuilder.setTitle("Sort By");
-        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+        dialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 sortname = (RadioGroup) dialogView.findViewById(R.id.sortnotify);
                 int selectedId = sortname.getCheckedRadioButtonId();
                 alphaa = (RadioButton) dialogView.findViewById(R.id.sortaz);
                 alphza = (RadioButton) dialogView.findViewById(R.id.sortza);
                 switch (selectedId) {
-
                     case R.id.sortaz:
-
-                   //     new RegisterTask().execute(Constants.sortaz);
-
+                        //     new RegisterTask().execute(Constants.sortaz);
                         break;
                     case R.id.sortza:
-                      //  new RegisterTask().execute(Constants.sortza);
-
+                        //  new RegisterTask().execute(Constants.sortza);
                 }
             }
         });

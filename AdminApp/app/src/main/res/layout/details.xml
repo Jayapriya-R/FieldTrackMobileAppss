@@ -20,33 +20,35 @@
             android:layout_height="120dp"
             android:background="@drawable/buildbg"
             android:layout_marginTop="0dp">
-
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/doctor2"
+                android:layout_marginLeft="15dp"
+                android:layout_alignTop="@+id/emp_name"
+                android:id="@+id/image_detail" />
             <TextView
                 android:text="Mary Sanchez"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="80dp"
                 android:textSize="20dp"
                 android:textColor="#ffffff"
-                android:layout_marginTop="50dp"
+                android:layout_above="@+id/text_role"
+                android:layout_alignLeft="@+id/text_role"
+                android:layout_marginBottom="10dp"
                 android:id="@+id/emp_name" />
 
             <TextView
                 android:text="Representative"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="80dp"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dp"
+                android:layout_toRightOf="@+id/image_detail"
                 android:textColor="#fcf8f8"
-                android:layout_marginTop="78dp"
                 android:id="@+id/text_role" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/doctor2"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="50dp"
-                android:id="@+id/image_detail" />
         </RelativeLayout>
 <RelativeLayout
     android:layout_width="match_parent"

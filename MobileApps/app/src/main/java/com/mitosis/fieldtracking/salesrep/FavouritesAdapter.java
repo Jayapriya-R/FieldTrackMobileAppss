@@ -35,8 +35,8 @@ public class FavouritesAdapter extends ArrayAdapter<String>{
 
     ArrayList<String> nameArr = new ArrayList<String>();
     ArrayList<String> statusArr = new ArrayList<String>();
-    ArrayList<String> dinstances = new ArrayList<String>();
-    ArrayList<String> imagesArr = new ArrayList<String>();
+    public static ArrayList<String> distances = new ArrayList<String>();
+    public static ArrayList<String> imagesArr = new ArrayList<String>();
 
     public static ArrayList<String> latitudeArr = new ArrayList<String>();
     public static ArrayList<String> longitudeArr = new ArrayList<String>();
@@ -56,7 +56,7 @@ public class FavouritesAdapter extends ArrayAdapter<String>{
         this.leadid = leadid;
         this.latitudeArr = latitude;
         this.longitudeArr = longitude;
-        this.dinstances = distance;
+        this.distances = distance;
         this.imagesArr = images;
 
     }
@@ -181,16 +181,18 @@ public class FavouritesAdapter extends ArrayAdapter<String>{
                 }
             }
         });
-        Picasso.with(context)
-                .load(imagesArr.get(position))
-                .placeholder(R.drawable.placeholder)   // optional
-                .error(R.drawable.error)     // optional
-                .resize(400,400)                        // optional
-                .into(imageLead);
 
         text_name.setText(nameArr.get(position));
         start.setText(statusArr.get(position));
-        milez.setText(dinstances.get(position)+" "+"Meters Away");
+        milez.setText(distances.get(position)+" "+"Meters Away");
+
+
+        Picasso.with(context)
+                .load(imagesArr.get(position))
+                .placeholder(R.drawable.placeholder)   // optional
+                .error(R.drawable.profile)     // optional
+                .resize(400,400)                        // optional
+                .into(imageLead);
 
         return rowView;
     }

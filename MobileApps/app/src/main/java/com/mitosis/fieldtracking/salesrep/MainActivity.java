@@ -1,7 +1,13 @@
 package com.mitosis.fieldtracking.salesrep;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
@@ -14,15 +20,39 @@ import android.support.v7.app.ActionBarDrawerToggle;
 
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import utils.Utils;
+
 
 public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
     private CoordinatorLayout coordinatorLayout;
     private ActionBarDrawerToggle toggle;
+    Context context;
+    ImageView profile;
+    TextView repname;
+    JSONObject jsonObject;
+    String registerUserURL;
+
+    public static String profileImage,firstName,lastName,teleNum,mobNum,eMail,Role,userName,changePassword,createdBy,userId;
+
 
     public static Activity act;
 
@@ -30,7 +60,14 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        context=this;
+        new RegisterTask().execute();
+        LayoutInflater layoutInflater=(LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+        View view=layoutInflater.inflate(R.layout.nav_header_main,null);
+        profile=(ImageView)view.findViewById(R.id.profile_image);
+        repname=(TextView)view.findViewById(R.id.profile_name);
+        Intent locationserviceIntent=new Intent(this,LocationListenerService.class);
+        startService(locationserviceIntent);
         act=this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -46,6 +83,80 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         homeFragment();
 
     }
+
+    private class RegisterTask extends AsyncTask<String, Void, Void> {
+        Activity mContex;
+        String createResponse;
+        ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage("Please wait..");
+            progressDialog.setTitle("Loading..");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+        @Override
+        protected Void doInBackground(String... params) {
+
+            RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+            registerUserURL = "http://202.61.120.46:9081/FieldTracking/users/getProfileDetails?userName="+ LoginPageActivity.Email.getText().toString();
+
+            StringRequest registerRequest = new StringRequest(Request.Method.GET, registerUserURL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+
+                        jsonObject = new JSONObject(response);
+
+                        firstName=(jsonObject.getString("firstName"));
+                        lastName=(jsonObject.getString("lastName"));
+                        teleNum=(jsonObject.getString("telephoneNumber"));
+                        mobNum=(jsonObject.getString("mobileNumber"));
+                        eMail=(jsonObject.getString("emailId"));
+                        Role=(jsonObject.getString("role"));
+                        userName=(jsonObject.getString("userName"));
+                        changePassword=(jsonObject.getString("password"));
+                        createdBy=(jsonObject.getString("createdBy"));
+                        userId=(jsonObject.getString("userId"));
+                        profileImage = jsonObject.getString("imageUrl");
+
+                    } catch (JSONException e) {
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("RegisterActivity", error.getMessage() != null ? error.getMessage() : "");
+                }
+            });
+            requestQueue.add(registerRequest);
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+           repname.setText("Welcome"+","+firstName+" "+lastName);
+
+            Picasso.with(context)
+                    .load(profileImage)
+                    .placeholder(R.drawable.placeholder)   // optional
+                    .error(R.drawable.profile)     // optional
+                    .resize(400,400)                        // optional
+                    .into(profile);
+            progressDialog.dismiss();
+        }
+    }
+
     public void setToolBar(String title) {
         getSupportActionBar().setTitle(title);
     }
@@ -88,9 +199,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 break;
             case R.id.nav_8:
                 AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
-//                LayoutInflater layoutInflater=(LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-//                View layout=layoutInflater.inflate(R.layout.today,null);
-//                alertDialog.setView(layout);
+
                 alertDialog.setTitle("Confirmation");
                 alertDialog.setMessage("       Do you want to signout?");
                 alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

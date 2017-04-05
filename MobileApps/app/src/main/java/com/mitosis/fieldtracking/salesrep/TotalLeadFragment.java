@@ -67,14 +67,12 @@ import static com.mitosis.fieldtracking.salesrep.Constants.status;
 import static com.mitosis.fieldtracking.salesrep.Constants.zipCode;
 import static com.mitosis.fieldtracking.salesrep.R.id.dateasc;
 
-
-
 public class TotalLeadFragment extends Fragment implements LocationListener {
     ListView list;
-    RadioButton alphaa, distance,atoz,ztoa;
+    RadioButton alphaa, distance;
     RadioGroup sort;
     LocationManager lm;
-    String provider,lat2,lng2;
+    String provider;
     Location l;
     double distances;
     FloatingActionButton fab;
@@ -82,9 +80,6 @@ public class TotalLeadFragment extends Fragment implements LocationListener {
     public static ArrayList<String> distanceArrs=new ArrayList<>();
     public static ArrayList<String> distanceArr=new ArrayList<>();
 
-    public TotalLeadFragment() {
-
-    }
 
     public static TotalLeadFragment newInstance(String tabSelected) {
         TotalLeadFragment fragment = new TotalLeadFragment();
@@ -94,12 +89,79 @@ public class TotalLeadFragment extends Fragment implements LocationListener {
         return fragment;
     }
 
+   /*public void serverconnect(){
+       RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+
+       String registerUserURL =Constants.listUrl;
+       contactName.clear();
+       status.clear();
+       addressLine1.clear();
+       addressLine2.clear();
+       city.clear();
+       state.clear();
+       zipCode.clear();
+       leadImage.clear();
+       distanceArr.clear();
+
+       StringRequest registerRequest = new StringRequest(Request.Method.GET, registerUserURL, new Response.Listener<String>() {
+           @Override
+           public void onResponse(String response) {
+               try {
+                   JSONArray jsonArray = new JSONArray(response);
+
+                   for (int i = 0; i < jsonArray.length(); i++) {
+
+                       JSONObject jsonObject = jsonArray.getJSONObject(i);
+                       contactName.add(jsonObject.getString("contactName"));
+                       status.add(jsonObject.getString("status"));
+                       addressLine1.add(jsonObject.getString("addressLine1"));
+                       addressLine2.add(jsonObject.getString("addressLine2"));
+                       city.add(jsonObject.getString("city"));
+                       state.add(jsonObject.getString("state"));
+                       zipCode.add(jsonObject.getString("zipCode"));
+                       mobileNumber.add(jsonObject.getString("mobileNumber"));
+                       leadDetailsId.add(jsonObject.getString("leadDetailsId"));
+                       latitude.add(jsonObject.getString("latitide"));
+                       longitude.add(jsonObject.getString("longitude"));
+                       appointmentDate.add(jsonObject.getString("appointmentDate"));
+                       leadImage.add(jsonObject.getString("imageUrl"));
+
+                       FavouritesAdapter adapter = new FavouritesAdapter(getContext(), contactName, status, leadDetailsId, addressLine1, addressLine2, city, state, zipCode, latitude, longitude,distanceArr,leadImage);
+                       list.setAdapter(adapter);
+                   }
+               } catch (JSONException e) {
+               }
+
+               try {
+                   Location location1 = new Location("locationA");
+                   location1.setLatitude(lat);
+                   location1.setLongitude(lng);
+                   Location location2 = new Location("locationB");
+                   for (int i = 0; i < latitude.size(); i++) {
+                       location2.setLatitude(Double.valueOf(latitude.get(i)));
+                       location2.setLongitude(Double.valueOf(longitude.get(i)));
+                       distances = location1.distanceTo(location2);
+                       distanceArr.add(String.valueOf((int) Math.round(distances)));
+                   }
+               }
+               catch (Exception e) {
+                   e.printStackTrace();
+               }
+           }
+       }, new Response.ErrorListener() {
+           @Override
+           public void onErrorResponse(VolleyError error) {
+               Log.e("RegisterActivity", error.getMessage() != null ? error.getMessage() : "");
+           }
+       });
+       requestQueue.add(registerRequest);
+   }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
-    }
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -112,8 +174,7 @@ public class TotalLeadFragment extends Fragment implements LocationListener {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        new RegisterTask().execute(Constants.loginUrl);
-
+      new RegisterTask().execute(Constants.listUrl);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override

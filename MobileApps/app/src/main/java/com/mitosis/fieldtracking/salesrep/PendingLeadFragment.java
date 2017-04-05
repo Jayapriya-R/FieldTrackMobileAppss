@@ -2,8 +2,10 @@ package com.mitosis.fieldtracking.salesrep;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -12,6 +14,7 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -29,7 +32,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
+import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -59,28 +62,30 @@ import static com.mitosis.fieldtracking.salesrep.Constants.mobileNumber;
 import static com.mitosis.fieldtracking.salesrep.Constants.state;
 import static com.mitosis.fieldtracking.salesrep.Constants.status;
 import static com.mitosis.fieldtracking.salesrep.Constants.zipCode;
-import static com.mitosis.fieldtracking.salesrep.TotalLeadFragment.distanceArr;
+import static com.mitosis.fieldtracking.salesrep.R.id.dateasc;
 
-/**
- * Created by mitosis on 20/2/17.
- */
+
 
 public class PendingLeadFragment extends Fragment implements LocationListener {
     ListView list;
-    RadioButton dateasc,distance;
+    RadioButton alphaa, distance,atoz,ztoa;
     RadioGroup sort;
-
     LocationManager lm;
     String provider,lat2,lng2;
     Location l;
     double distances;
-
+    FloatingActionButton fab;
     List<Integer> integersArray = new ArrayList<>();
     public static ArrayList<String> distanceArrs=new ArrayList<>();
+    public static ArrayList<String> distanceArr=new ArrayList<>();
 
 
-    public PendingLeadFragment() {
-        // Required empty public constructor
+    public static PendingLeadFragment newInstance(String tabSelected) {
+        PendingLeadFragment fragment = new PendingLeadFragment();
+        Bundle args = new Bundle();
+        args.putString(Constants.FRAG_B, tabSelected);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -89,19 +94,18 @@ public class PendingLeadFragment extends Fragment implements LocationListener {
         if (getArguments() != null) {
         }
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.pendinglead_list, container, false);
         setHasOptionsMenu(true);
 
-        View view = inflater.inflate(R.layout.pendinglead_list, container, false);
         list = (ListView) view.findViewById(R.id.pending_listview);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
         new RegisterTask().execute(Constants.pending);
-
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -109,18 +113,20 @@ public class PendingLeadFragment extends Fragment implements LocationListener {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                String name=contactName.get(position);
-                String statuz=status.get(position);
-                String Addressline1=addressLine1.get(position);
-                String Addressline2=addressLine2.get(position);
-                String citi=city.get(position);
-                String statE=state.get(position);
-                String zipcode=zipCode.get(position);
-                String mobnum=mobileNumber.get(position);
-                String mile=distanceArr.get(position);
-                String lat=latitude.get(position);
-                String lng=longitude.get(position);
+                String name = contactName.get(position);
+                String statuz = status.get(position);
+                String Addressline1 = addressLine1.get(position);
+                String Addressline2 = addressLine2.get(position);
+                String citi = city.get(position);
+                String statE = state.get(position);
+                String zipcode = zipCode.get(position);
+                String mobnum = mobileNumber.get(position);
+                String mile = distanceArr.get(position);
+                String lat = latitude.get(position);
+                String lng = longitude.get(position);
+                String leadid = leadDetailsId.get(position);
                 String date=appointmentDate.get(position);
+                String image=leadImage.get(position);
 
                 Bundle args = new Bundle();
                 Fragment fragment = new LeadDetailsFragment();
@@ -137,7 +143,9 @@ public class PendingLeadFragment extends Fragment implements LocationListener {
                 args.putString("mobile", mobnum);
                 args.putString("latitude", lat);
                 args.putString("longitude", lng);
+                args.putString("idLead", leadid);
                 args.putString("appointmentDate", date);
+                args.putString("imageUrl", image);
 
                 fragment.setArguments(args);
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -169,7 +177,6 @@ public class PendingLeadFragment extends Fragment implements LocationListener {
             e.printStackTrace();
         }
 
-
         return view;
     }
 
@@ -181,12 +188,16 @@ public class PendingLeadFragment extends Fragment implements LocationListener {
         super.onCreateOptionsMenu(menu, inflater);
         getActivity().setTitle("DASHBOARD");
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_mainMenu3:
                 final Dialog dialog = new Dialog(getContext());
                 showChangeLangDialog();
+                return true;
+            case R.id.action_search:
+                Toast.makeText(getActivity(), "Selected Item: " + item.getTitle(), Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -201,19 +212,20 @@ public class PendingLeadFragment extends Fragment implements LocationListener {
         dialogBuilder.setTitle("Sort By");
         dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                sort= (RadioGroup)dialogView.findViewById(R.id.sort);
+                sort = (RadioGroup) dialogView.findViewById(R.id.sort);
                 int selectedId = sort.getCheckedRadioButtonId();
-                dateasc= (RadioButton) dialogView.findViewById(R.id.dateasc);
-                distance= (RadioButton) dialogView.findViewById(R.id.distance);
+                alphaa = (RadioButton) dialogView.findViewById(dateasc);
+                distance = (RadioButton) dialogView.findViewById(R.id.distance);
                 switch (selectedId) {
                     case R.id.dateasc:
                         new RegisterTask().execute(Constants.sortappointdateasc);
 
+                        alphaa.setChecked(true);
                         break;
                     case R.id.distance:
+                        distance.setChecked(true);
                         for (int i = 0; i < distanceArr.size(); i++) {
                             integersArray.add(Integer.parseInt(distanceArr.get(i)));
-                            //  Toast.makeText(getContext(), distanceArr.get(i), Toast.LENGTH_SHORT).show();
                         }
                         for (Integer integer: integersArray) {
                             System.out.println(integer);
@@ -240,17 +252,17 @@ public class PendingLeadFragment extends Fragment implements LocationListener {
                         for (Integer integer: integersArray) {
                             System.out.println(integer);
                         }
-                        PendingAdapter adapter = new PendingAdapter(getContext(),contactName,status,leadDetailsId,addressLine1,addressLine2,city,state,zipCode,latitude,longitude,distanceArrs,leadImage);
+                        PendingAdapter adapter = new PendingAdapter(getContext(), contactName, status, leadDetailsId, addressLine1, addressLine2, city, state, zipCode, latitude, longitude,distanceArrs,leadImage);
                         list.setAdapter(adapter);
                         break;
                     case R.id.sortaz:
+
 
                         new RegisterTask().execute(Constants.sortaz);
 
                         break;
                     case R.id.sortza:
                         new RegisterTask().execute(Constants.sortza);
-
                 }
             }
         });
@@ -282,36 +294,45 @@ public class PendingLeadFragment extends Fragment implements LocationListener {
     public void onProviderDisabled(String provider) {
 
     }
-
-
     private class RegisterTask extends AsyncTask<String, Void, Void> {
 
-        public RegisterTask() {
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage("Please wait..");
+            progressDialog.setTitle("Loading..");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
         }
-
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressDialog.dismiss();
+        }
         @Override
         protected Void doInBackground(String... params) {
 
             RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
 
             String registerUserURL = params[0];
-            contactName .clear();
-            status .clear();
-            addressLine1 .clear();
-            addressLine2 .clear();
-            city .clear();
-            state .clear();
-            zipCode .clear();
+            contactName.clear();
+            status.clear();
+            addressLine1.clear();
+            addressLine2.clear();
+            city.clear();
+            state.clear();
+            zipCode.clear();
 
             StringRequest registerRequest = new StringRequest(Request.Method.GET, registerUserURL, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {
-                        JSONArray jsonArray=new JSONArray(response);
+                        JSONArray jsonArray = new JSONArray(response);
 
-                        for(int i=0;i<jsonArray.length();i++){
+                        for (int i = 0; i < jsonArray.length(); i++) {
 
-                            JSONObject jsonObject=jsonArray.getJSONObject(i);
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
                             contactName.add(jsonObject.getString("contactName"));
                             status.add(jsonObject.getString("status"));
                             addressLine1.add(jsonObject.getString("addressLine1"));
@@ -326,8 +347,9 @@ public class PendingLeadFragment extends Fragment implements LocationListener {
                             appointmentDate.add(jsonObject.getString("appointmentDate"));
                             leadImage.add(jsonObject.getString("imageUrl"));
 
-                            PendingAdapter adapter = new PendingAdapter(getContext(),contactName,status,leadDetailsId,addressLine1,addressLine2,city,state,zipCode,latitude,longitude,distanceArr,leadImage);
+                            PendingAdapter adapter = new PendingAdapter(getContext(), contactName, status, leadDetailsId, addressLine1, addressLine2, city, state, zipCode, latitude, longitude,distanceArr,leadImage);
                             list.setAdapter(adapter);
+
                         }
                     } catch (JSONException e) {
                     }
@@ -351,7 +373,6 @@ public class PendingLeadFragment extends Fragment implements LocationListener {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-
                     Log.e("RegisterActivity", error.getMessage() != null ? error.getMessage() : "");
                 }
             });

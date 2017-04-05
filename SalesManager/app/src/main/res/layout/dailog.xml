@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginLeft="20dp"
+    android:layout_width="400dp"
+    android:layout_height="500dp">
+<TextView
+    android:layout_marginTop="10dp"
+    android:gravity="center"
+    android:textColor="@color/blue"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:id="@+id/salerep"
+    android:text="Sale Representative"/>
+    <View
+        android:layout_below="@+id/salerep"
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#d2d1d1" />
+
+    <ListView
+        android:id="@+id/lv"
+        android:drawSelectorOnTop="false"
+        android:listSelector="@color/lightblue"
+        android:layout_below="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"/>
+    <View
+        android:layout_below="@+id/lv"
+        android:id="@+id/views"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#d2d1d1" />
+</RelativeLayout>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:scrollbars = "vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:id="@+id/rel1"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:saveEnabled="false">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/buildbg"
+                android:id="@+id/image"
+                android:scaleType="fitXY" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:src="@drawable/contprofile"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/leadimage"
+                android:adjustViewBounds="false"
+                android:cropToPadding="false" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="155dp">
+
+            <TextView
+                android:text="FIRST NAME"
+                android:gravity="bottom"
+                android:textColor="#4f4f4f"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:id="@+id/textView1" />
+
+            <EditText
+                android:text="Selva"
+                android:textColor="#505050"
+                android:textStyle="bold"
+                android:layout_marginLeft="95dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/edit_firstname" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="230dp">
+            <TextView
+                android:text="LAST NAME"
+                android:gravity="bottom"
+                android:textColor="#c1000000"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:id="@+id/textView2" />
+
+            <EditText
+                android:text="Kumar"
+                android:textStyle="bold"
+                android:textColor="#c1000000"
+                android:layout_marginLeft="95dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/edit_lastname" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="290dp">
+            <TextView
+                android:text="TELEPHONE NUMBER"
+                android:gravity="bottom"
+                android:textColor="#c1000000"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:id="@+id/textView5" />
+
+            <EditText
+                android:text="04341-246786"
+                android:textStyle="bold"
+                android:textColor="#c1000000"
+                android:layout_marginLeft="95dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/edit_telenum" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="360dp">
+            <TextView
+                android:text="MOBILE NUMBER"
+                android:gravity="bottom"
+                android:textColor="#c1000000"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:id="@+id/text_mob" />
+
+            <EditText
+                android:text="9790597024"
+                android:textStyle="bold"
+                android:gravity="bottom"
+                android:textColor="#c1000000"
+                android:layout_marginLeft="95dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/edit_mobilenum" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:id="@+id/rel_Email"
+            android:layout_marginTop="430dp">
+            <TextView
+                android:text="EMAIL ID"
+                android:textColor="#c1000000"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:id="@+id/textView4" />
+
+            <EditText
+                android:text="selvakumar123@gmail.com"
+                android:textStyle="bold"
+                android:textColor="#c1000000"
+                android:layout_marginLeft="95dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/edit_email" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:id="@+id/reluser"
+            android:layout_below="@+id/rel_Email"
+            >
+            <TextView
+                android:text="USERNAME"
+                android:gravity="bottom"
+                android:textColor="#c1000000"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:id="@+id/textView3" />
+
+            <TextView
+                android:text="Selva123"
+                android:textStyle="bold"
+                android:textColor="#c1000000"
+                android:layout_marginLeft="95dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/text_username" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#f59c02"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/reluser">
+            <TextView
+                android:id="@+id/text_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="12dp"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:text="SAVE" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>

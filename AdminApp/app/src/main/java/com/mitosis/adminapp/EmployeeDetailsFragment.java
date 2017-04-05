@@ -3,6 +3,7 @@ package com.mitosis.adminapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -54,9 +55,8 @@ public class EmployeeDetailsFragment extends Fragment {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getFragmentManager().popBackStackImmediate();
 
-             Intent main=new Intent(getContext(),MainActivity.class);
-                startActivity(main);
             }
         });
 

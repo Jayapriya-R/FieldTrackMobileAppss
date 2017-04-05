@@ -9,8 +9,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/NoActionBarTheme">
-        <activity
+        android:theme="@style/NoActionBarTheme"
+        android:name="android.support.multidex.MultiDexApplication">
+
+    <activity
             android:name="com.mitosis.adminapp.LoginActivity"
             android:screenOrientation="sensorPortrait"
             android:label="@string/app_name"

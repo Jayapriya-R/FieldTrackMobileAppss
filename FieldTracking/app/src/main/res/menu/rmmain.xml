@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|collapseActionView"
+        android:icon="@drawable/search"
+        android:title="Search by Doctor Name or Location" />
+    <item
+        android:id="@+id/action_mainMenu2"
+        android:orderInCategory="10"
+        android:title="Notification"
+        android:icon="@drawable/noti"
+        app:showAsAction="withText|always" />
+
+    <item
+        android:id="@+id/action_details"
+        android:orderInCategory="10"
+        app:showAsAction="always|withText"
+        android:icon="@drawable/headericon"
+        android:title="map" />
+
+
+
+    <item
+        android:id="@+id/action_mainMenu3"
+        android:orderInCategory="10"
+        android:title="Sort"
+
+        android:icon="@drawable/sort"
+        app:showAsAction="always|withText" />
+
+
+
+</menu>
