@@ -1,7 +1,7 @@
 package com.mitosis.fieldtracking.regionalmanager;
 
 /**
- * Created by mitosis on 18/2/17.
+ *jayapriya Created by mitosis on 18/2/17.
  */
 
 import android.app.Dialog;
@@ -146,6 +146,7 @@ public class RMTotalLeadFragment extends Fragment {
                             pendingcount.add(jsonObject.getString("pendingCount"));
                             username.add(jsonObject.getString("userName"));
                             uuuserId.add(jsonObject.getString("userId"));
+                            
                         }
                     } catch (JSONException e) {
                     }
