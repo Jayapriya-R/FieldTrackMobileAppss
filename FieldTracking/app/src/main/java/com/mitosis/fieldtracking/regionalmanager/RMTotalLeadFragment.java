@@ -5,6 +5,7 @@ package com.mitosis.fieldtracking.regionalmanager;
  */
 
 import android.app.Dialog;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -57,6 +59,7 @@ public class RMTotalLeadFragment extends Fragment {
     ListView list;
     private static RMTotalLeadAdapter adapter;
     FloatingActionButton flat;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.rmrepview, container, false);
@@ -97,7 +100,7 @@ public class RMTotalLeadFragment extends Fragment {
 
             }
         });
-        flat=(FloatingActionButton)view.findViewById(R.id.fab);
+        flat = (FloatingActionButton) view.findViewById(R.id.fab);
         flat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,13 +120,17 @@ public class RMTotalLeadFragment extends Fragment {
 
         return view;
     }
+
     private class LeadTask extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... params) {
             RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
             String registerUserURL = params[0];
-            firstname.clear();lastName.clear();totalcount.clear();
-            completecount.clear();pendingcount.clear();
+            firstname.clear();
+            lastName.clear();
+            totalcount.clear();
+            completecount.clear();
+            pendingcount.clear();
             StringRequest registerRequest = new StringRequest(Request.Method.GET, registerUserURL, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
@@ -140,10 +147,11 @@ public class RMTotalLeadFragment extends Fragment {
                             username.add(jsonObject.getString("userName"));
                             uuuserId.add(jsonObject.getString("userId"));
                         }
-                      } catch (JSONException e) {
+                    } catch (JSONException e) {
                     }
-                    adapter = new RMTotalLeadAdapter(getContext(),firstname,lastName,totalcount,completecount,pendingcount ,username,uuuserId);
+                    adapter = new RMTotalLeadAdapter(getContext(), firstname, lastName, totalcount, completecount, pendingcount, username, uuuserId);
                     list.setAdapter(adapter);
+                    list.setTextFilterEnabled(true);
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -155,28 +163,35 @@ public class RMTotalLeadFragment extends Fragment {
             return null;
         }
     }
- /*   void alterbox() {
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.rmmessage, null);
-        dialogBuilder.setView(dialogView);
-        dialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
 
-            }
-        });
-        AlertDialog b = dialogBuilder.create();
-        b.show();
-    }
-*/
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.rmmain, menu);
-        MenuItem item2 = menu.findItem(R.id.action_mainMenu2);
-        item2.setVisible(false);
         super.onCreateOptionsMenu(menu, inflater);
         getActivity().setTitle("DASHBOARD");
+        SearchManager searchManager = (SearchManager) getContext().getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setIconifiedByDefault(false);
+        SearchView.OnQueryTextListener textChangeListener = new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // this is your adapter that will be filtadapter.getFilter().filter(newText);
+                System.out.println("on text chnge text: " + newText);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // this is your adapter that will be filtered
+                adapter.getFilter().filter(query);
+                System.out.println("on query submit: " + query);
+                return true;
+            }
+        };
+        searchView.setOnQueryTextListener(textChangeListener);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -220,11 +235,4 @@ public class RMTotalLeadFragment extends Fragment {
         AlertDialog b = dialogBuilder.create();
         b.show();
     }
-
-
-
-
-
-
 }
-

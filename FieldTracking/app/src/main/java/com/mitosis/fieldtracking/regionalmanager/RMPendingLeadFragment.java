@@ -2,10 +2,13 @@ package com.mitosis.fieldtracking.regionalmanager;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -47,13 +50,64 @@ import static com.mitosis.fieldtracking.regionalmanager.RMConstants.pzipCode;
 
 public class RMPendingLeadFragment extends Fragment {
     ListView pendinglist;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.rmpendinglead_list, container, false);
         setHasOptionsMenu(true);
         pendinglist = (ListView) view.findViewById(R.id.pending_listview);
-        pending(pendingleadListOfRepresentative + 88);
+        pending(pendingleadListOfRepresentative + 45);
+
+
+
+        pendinglist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String name = pcontactName.get(position);
+                String statuz = pstatus.get(position);
+                String Addressline1 = paddressLine1.get(position);
+                String Addressline2 = paddressLine2.get(position);
+                String citi = pcity.get(position);
+                String statE = pstate.get(position);
+                String zipcode = pzipCode.get(position);
+                String mobnum = pmobileNumber.get(position);
+              //  String mile=pdistanceArr.get(position);
+                String lat=platitude.get(position);
+                String lng = plongitude.get(position);
+                String leadid = pleadDetailsId.get(position);
+                String date=pappointmentDate.get(position);
+                String image=pimageUrl.get(position);
+                String notesss=pnotes.get(position);
+                Bundle args = new Bundle();
+                Fragment fragment = new RMRepresentativeDetails();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                args.putString("Name", name);
+                args.putString("Status", statuz);
+                args.putString("AddressLine1", Addressline1);
+                args.putString("AddressLine2", Addressline2);
+                args.putString("City", citi);
+                args.putString("State", statE);
+                args.putString("ZipCode", zipcode);
+              //  args.putString("Mile", mile);
+                args.putString("mobile", mobnum);
+                args.putString("latitude", lat);
+                args.putString("longitude", lng);
+                args.putString("idLead", leadid);
+                args.putString("appointmentDate", date);
+                args.putString("imageUrl", image);
+                args.putString("NOtes", notesss);
+
+                fragment.setArguments(args);
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.fragment_slide_left_enter,
+                        R.anim.fragment_slide_left_exit,
+                        R.anim.fragment_slide_right_enter,
+                        R.anim.fragment_slide_right_exit);
+                fragmentTransaction.replace(R.id.fragment_layout_for_activity_navigation, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
         return view;
     }
 
@@ -64,7 +118,9 @@ public class RMPendingLeadFragment extends Fragment {
             @Override
             public void onResponse(String response) {
 
-
+pcontactName.clear();pstatus.clear();pleadname.clear();ptelephonenumber.clear();pmobileNumber.clear();pemail.clear();
+                paddressLine1.clear();paddressLine2.clear();pcity.clear();pstate.clear();pzipCode.clear();plandMark.clear();
+                pleadDetailsId.clear();pimageUrl.clear();prepId.clear();platitude.clear();plongitude.clear();pappointmentDate.clear();pnotes.clear();
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {

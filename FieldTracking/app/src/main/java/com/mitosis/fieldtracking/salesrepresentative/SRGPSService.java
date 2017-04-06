@@ -134,7 +134,7 @@ public class SRGPSService extends Service implements LocationListener {
 				e1.printStackTrace();
 				return ("IO Exception trying to get address:" + e1);
 			} catch (IllegalArgumentException e2) {
-				// Error message to post in the log
+				// Error rmmessage to post in the log
 				String errorString = "Illegal arguments "
 						+ Double.toString(mLatitude) + " , "
 						+ Double.toString(mLongitude)

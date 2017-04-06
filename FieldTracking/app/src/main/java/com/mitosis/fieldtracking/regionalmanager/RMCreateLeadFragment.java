@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -26,7 +27,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -44,8 +44,6 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.mitosis.fieldtracking.R;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,7 +62,7 @@ import static com.mitosis.fieldtracking.regionalmanager.RMConstants.userId;
 import static com.mitosis.fieldtracking.integrated.LoginActivity.loginuserid;
 
 
-public class RMCreateLeadFragment extends Fragment implements View.OnTouchListener {
+public class RMCreateLeadFragment extends Fragment  implements View.OnTouchListener {
 
     GoogleApiClient mGoogleApiClient;
 
@@ -76,9 +74,9 @@ public class RMCreateLeadFragment extends Fragment implements View.OnTouchListen
     EditText mPhone;
     ImageView leadimage;
     Button btnsubmit;
-    EditText Clientname, Desitination, mAddress2;
+    EditText Clientname, Desitination, mAddress2,spinner_txt;
     EditText city, state, zipCode, assignto;
-    TextView spinner_txt;
+  //  TextView spinner_txt;
     String name;
     private Bitmap bitmap;
     private Uri filePath;
@@ -114,8 +112,8 @@ String clientname,desitination,address1,address2,cityy,statee,zipcodee,mphonee,s
         imageicon = (ImageView) view.findViewById(R.id.imageicon);
         leadimage = (ImageView) view.findViewById(R.id.leadimage);
         btnsubmit = (Button) view.findViewById(R.id.layout_create);
-        spinner_txt = (TextView) view.findViewById(R.id.spinner_txt);
-        spinnerimage=(ImageView)view.findViewById(R.id.spinnerimage);
+        spinner_txt = (EditText) view.findViewById(R.id.spinner_txt);
+     //   spinnerimage=(ImageView)view.findViewById(R.id.spinnerimage);
         new RegisterTask().execute(RMConstants.repview);
         spinner_txt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,24 +121,32 @@ String clientname,desitination,address1,address2,cityy,statee,zipcodee,mphonee,s
                 spinnerselection();
             }
         });
-        spinnerimage.setOnClickListener(new View.OnClickListener() {
+      /*  spinnerimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 spinnerselection();
             }
-        });
+        });*/
 
+        /*final String sClientname= Clientname.getText().toString();
+        final String sDestination=  Desitination.getText().toString();
+        final String sAddress= mAddress.getText().toString();
+        final String sAddress2= mAddress2.getText().toString();
+        final String scity= city.getText().toString();
+        final String sstate= state.getText().toString();
+        final String szipcode= zipCode.getText().toString();
+        final String sPhone= mPhone.getText().toString();  */
         btnsubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 jsonObject = new JSONObject();
                 try {
-                    jsonObject.put("contactName", Clientname.getText().toString());
+                    jsonObject.put("contactName",  Clientname.getText().toString());
                     jsonObject.put("leadName", Desitination.getText().toString());
                     jsonObject.put("addressLine1", mAddress.getText().toString());
                     jsonObject.put("addressLine2", mAddress2.getText().toString());
-                    jsonObject.put("city", city.getText().toString());
+                    jsonObject.put("city",  city.getText().toString());
                     jsonObject.put("state", state.getText().toString());
                     jsonObject.put("country", "India");
                     jsonObject.put("zipCode", zipCode.getText().toString());
@@ -148,7 +154,7 @@ String clientname,desitination,address1,address2,cityy,statee,zipcodee,mphonee,s
                     jsonObject.put("assignedTo", assignstask);
                     jsonObject.put("landMark", "windmare appt");
                     jsonObject.put("telephoneNumber", "7848938499");
-                    jsonObject.put("mobileNumber", mPhone.getText().toString());
+                    jsonObject.put("mobileNumber",  mPhone.getText().toString());
                     jsonObject.put("email", "ghousia.khan@gmail.com");
                     jsonObject.put("imageType", "jpg");
                     jsonObject.put("imageBase64", encodedImage);
@@ -156,20 +162,83 @@ String clientname,desitination,address1,address2,cityy,statee,zipcodee,mphonee,s
                     jsonObject.put("longitude", longitude);
                 } catch (Exception e) {
                 }
-
-                awesomeValidation.addValidation(getActivity(), R.id.edit_docname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.name);
+             /*   awesomeValidation.addValidation(getActivity(), R.id.edit_docname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.name);
                 awesomeValidation.addValidation(getActivity(), R.id.edit_docdes, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.destination);
                 //awesomeValidation.addValidation(getActivity(), R.id.edit_add1, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.address);
                 //awesomeValidation.addValidation(getActivity(), R.id.edit_add2, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.addresss);
                 awesomeValidation.addValidation(getActivity(), R.id.edit_city, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.city);
                 awesomeValidation.addValidation(getActivity(), R.id.edit_state, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.state);
              //   awesomeValidation.addValidation(getActivity(), R.id.spinner_txt, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.name);
-                awesomeValidation.addValidation(getActivity(), R.id.edit_pin, "^\\d{6}$", R.string.pincode);
-             //   awesomeValidation.addValidation(getActivity(), R.id.edit_mobNum, "^\\d{10}$", R.string.moblieno);
-                   if(awesomeValidation.validate()) {
+              //  awesomeValidation.addValidation(getActivity(), R.id.edit_pin, "^\\d{6}$", R.string.pincode);
+             //   awesomeValidation.addValidation(getActivity(), R.id.edit_mobNum, "^\\d{10}$", R.string.moblieno);*/
+
+                if( Clientname.getText().toString().length() == 0 ) {
+                    Clientname.requestFocus();
+                    Toast.makeText(getContext(),"enter the client name",Toast.LENGTH_SHORT).show();
+
+                }
+
+                if( Desitination.getText().toString().length() == 0 ) {
+                   // Desitination.setError("enter the destination");
+
+                    Desitination.requestFocus();
+                    Toast.makeText(getContext(),"enter the destination",Toast.LENGTH_SHORT).show();
+
+
+
+                }
+
+                if( mAddress.getText().toString().length() == 0 ) {
+                    mAddress.requestFocus();
+                    Toast.makeText(getContext(),"enter the address",Toast.LENGTH_SHORT).show();
+                    //mAddress.setError("enter the address");
+                }
+
+                if( mAddress2.getText().toString().length() == 0 ) {
+                   // mAddress2.setError("Enter the address");
+
+                    mAddress2.requestFocus();
+
+                    Toast.makeText(getContext(),"enter the destination",Toast.LENGTH_SHORT).show();
+
+                }
+
+                if( city.getText().toString().length() == 0 ) {
+                    //city.setError("Enter the city");
+                    city.requestFocus();
+                    Toast.makeText(getContext(),"enter the destination",Toast.LENGTH_SHORT).show();
+
+                }
+                if( state.getText().toString().length() == 0 ) {
+                    state.setError("Enter the Zipcode");
+                    state.requestFocus();
+                }
+                if( zipCode.getText().toString().length() == 0 ) {
+                    zipCode.setError("Enter the Zipcode");
+                    zipCode.requestFocus();
+                }
+
+                if( mPhone.getText().toString().length() == 0 ) {
+                    mPhone.setError("enter the phone number");
+                    mPhone.requestFocus();
+                }
+                if(spinner_txt.getText().toString().length()==0)
+                {
+
+                    spinner_txt.setError("choose representive");
+                    mPhone.requestFocus();
+
+                }
+
+               else{
+                    new MyAsyncTask().execute();
+                }
+           /*     if(awesomeValidation.validate()) {
                     new MyAsyncTask().execute();
                     //process the data further
                 }
+
+*/
             }
         });
 
@@ -231,9 +300,6 @@ String clientname,desitination,address1,address2,cityy,statee,zipcodee,mphonee,s
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-
-
         if (data!=null)
         {
             // go to next activity
@@ -265,16 +331,16 @@ String clientname,desitination,address1,address2,cityy,statee,zipcodee,mphonee,s
                 e.printStackTrace();
             }
         }
-    }else{
+    }/*else{
 
             Picasso.with(getContext())
                     .load(filePath)
                     .placeholder(R.drawable.placeholder)   // optional
                     .error(R.drawable.error)     // optional
-                    .resize(400,400)                        // optional
-                    .into((Target) filePath);
+                    .resize(400,400)                    // optional
+                   .into((Target) filePath);
 
-        }}
+        }*/}
 
     public void displayPlace(Place place) {
         if (place == null)
@@ -332,7 +398,32 @@ String clientname,desitination,address1,address2,cityy,statee,zipcodee,mphonee,s
             alertdialog.setNegativeButton("Later", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                  /*  Bitmap drawableToBitmap (Drawable drawable) {
+                        if (drawable instanceof BitmapDrawable) {
+                            return ((BitmapDrawable)drawable).getBitmap();
+                        }
+                        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+                        Canvas canvas = new Canvas(bitmap);
+                        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+                        drawable.draw(canvas);
 
+                        return bitmap;
+                    }
+
+                    public static InputStream bitmapToInputStream(Bitmap bitmap) {
+                        int size = bitmap.getHeight() * bitmap.getRowBytes();
+                        ByteBuffer buffer = ByteBuffer.allocate(size);
+                        bitmap.copyPixelsToBuffer(buffer);
+                        return new ByteArrayInputStream(buffer.array());
+                    }
+*/
+
+
+
+
+
+                    Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(),
+                            R.drawable.doctor1);
                 }
             });
             alertdialog.setPositiveButton("Upload Image", new DialogInterface.OnClickListener() {
@@ -378,11 +469,8 @@ String clientname,desitination,address1,address2,cityy,statee,zipcodee,mphonee,s
             else {
                 progressDialog.dismiss();
                 alertdialog.show();
-
             }
-
         }
-
     }
 
     private void spinnerselection() {
@@ -407,6 +495,13 @@ String clientname,desitination,address1,address2,cityy,statee,zipcodee,mphonee,s
                 spinnertxt=spinner_txt.getText().toString();
             }
         });
+        dialogBuilder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+            Toast.makeText(getContext(),"Please choose the sale Representative",Toast.LENGTH_LONG).show();
+
+            }
+        });
+
         AlertDialog b = dialogBuilder.create();
         b.show();
     }
@@ -430,7 +525,10 @@ String clientname,desitination,address1,address2,cityy,statee,zipcodee,mphonee,s
                             firstname.add(jsonObject.getString("firstName"));
                             lastName.add(jsonObject.getString("lastName"));
                             userId.add(jsonObject.getString("userId"));
+                            //imageUrl.add(jsonObject.getString("imageUrl"));
                         }
+
+
                         adapter = new RMDailogAdapter(getContext(), firstname,userId);
                     } catch (JSONException e) {
                     }
@@ -471,7 +569,7 @@ String clientname,desitination,address1,address2,cityy,statee,zipcodee,mphonee,s
                     Desitination.requestFocus();
                 }
                 if(address1.length()==0){
-                    mAddress.setError("Enter the address");
+                    .mAddress.setError("Enter the address");
                     mAddress.requestFocus();
                 }
                 if(address2.length()==0){

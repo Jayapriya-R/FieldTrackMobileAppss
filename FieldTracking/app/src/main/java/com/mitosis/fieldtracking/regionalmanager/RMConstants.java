@@ -7,9 +7,9 @@ import java.util.ArrayList;
  */
 
 public class RMConstants {
-    public final static String FRAG_A = "rmrepview";
-    public final static String FRAG_B = "rmdetails";
-    public final static String FRAG_c= "rmprofile";
+    public final static String FRAG_A = "repview";
+    public final static String FRAG_B = "details";
+    public final static String FRAG_c= "profile";
     public static String create="http://202.61.120.46:9081/FieldTracking/lead/create";
     public static String repview="http://202.61.120.46:9081/FieldTracking/manager/getAllRepresentatives";
     public static String repviewtotal="http://202.61.120.46:9081/FieldTracking/manager/getAllRepresentatives";
@@ -27,6 +27,7 @@ public class RMConstants {
     public static String getAllRepresentativesLocation="http://202.61.120.46:9081/FieldTracking/manager/getAllRepresentativesLocation";
     public static String repza="http://202.61.120.46:9081/FieldTracking/manager/sortRepresentatives?orderToSort=desc";
     public static String repaz="http://202.61.120.46:9081/FieldTracking/manager/sortRepresentatives?orderToSort=asc";
+    public static String statusattended="http://202.61.120.46:9081/FieldTracking/leadTracking/leadList?repId=26&fieldNameToSort=status&statusName=attended";
 
     public static ArrayList<String> firstname = new ArrayList<String>();
     public static  ArrayList<String> username=new ArrayList<String>();

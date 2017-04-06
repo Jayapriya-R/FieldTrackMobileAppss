@@ -2,10 +2,13 @@ package com.mitosis.fieldtracking.regionalmanager;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -56,7 +59,58 @@ public class RMCompletedLeadFragment extends Fragment {
         View view = inflater.inflate(R.layout.rmcompletelead_list, container, false);
         setHasOptionsMenu(true);
         complete = (ListView) view.findViewById(R.id.complete_listview);
-        completedd(completedleadListOfRepresentative + 88);
+        completedd(completedleadListOfRepresentative + 45);
+        complete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String name = ccontactName.get(position);
+                String statuz = cstatus.get(position);
+                String Addressline1 = caddressLine1.get(position);
+                String Addressline2 = caddressLine2.get(position);
+                String citi = ccity.get(position);
+                String statE = cstate.get(position);
+                String zipcode = czipCode.get(position);
+                String mobnum = cmobileNumber.get(position);
+                //  String mile=pdistanceArr.get(position);
+                String lat = clatitude.get(position);
+                String lng = clongitude.get(position);
+                String leadid = cleadDetailsId.get(position);
+                String date = cappointmentDate.get(position);
+                String image = cimageUrl.get(position);
+                String notesss = cnotes.get(position);
+                Bundle args = new Bundle();
+                Fragment fragment = new RMRepresentativeDetails();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                args.putString("Name", name);
+                args.putString("Status", statuz);
+                args.putString("AddressLine1", Addressline1);
+                args.putString("AddressLine2", Addressline2);
+                args.putString("City", citi);
+                args.putString("State", statE);
+                args.putString("ZipCode", zipcode);
+                //  args.putString("Mile", mile);
+                args.putString("mobile", mobnum);
+                args.putString("latitude", lat);
+                args.putString("longitude", lng);
+                args.putString("idLead", leadid);
+                args.putString("appointmentDate", date);
+                args.putString("imageUrl", image);
+                args.putString("NOtes", notesss);
+
+                fragment.setArguments(args);
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.fragment_slide_left_enter,
+                        R.anim.fragment_slide_left_exit,
+                        R.anim.fragment_slide_right_enter,
+                        R.anim.fragment_slide_right_exit);
+                fragmentTransaction.replace(R.id.fragment_layout_for_activity_navigation, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+
+            }
+        });
         return view;
     }
 
@@ -66,7 +120,9 @@ public class RMCompletedLeadFragment extends Fragment {
         StringRequest registerRequest = new StringRequest(Request.Method.GET, registerUserURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
+                ccontactName.clear();cstate.clear();cleadname.clear();ctelephonenumber.clear();  cmobileNumber.clear();cemail.clear();caddressLine1.clear();
+                caddressLine2.clear();cstate.clear();czipCode.clear();clandMark.clear();cimageUrl.clear();crepId.clear();
+                clatitude.clear();cappointmentDate.clear();cnotes.clear();
 
                 try {
                     JSONArray jsonArray = new JSONArray(response);

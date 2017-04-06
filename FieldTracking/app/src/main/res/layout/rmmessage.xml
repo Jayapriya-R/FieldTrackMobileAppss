@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="match_parent">
 
@@ -10,35 +11,28 @@
         android:gravity="center"
         android:textColor="#000"
         android:text="Description Details"/>
-
-
-
-<!--<RelativeLayout
+<LinearLayout
     android:layout_width="match_parent"
     android:id="@+id/rel"
-    android:layout_marginTop="20dp"
-    android:layout_height="70dp">
+    android:orientation="horizontal"
+    android:layout_height="85dp">
 
-    <ImageView
-
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/leaadimage"
+        app:civ_border_color="@color/rosybrown"
+        app:civ_border_width="2dp"
         android:src="@drawable/doctor2"/>
     <TextView
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_marginLeft="95dp"
+        android:layout_marginLeft="15dp"
         android:text="Dr.Raymond White"
         android:id="@+id/namee"
         android:textColor="@color/blue"
         android:layout_height="wrap_content" />
-    <TextView
-        android:layout_below="@+id/namee"
-        android:layout_marginLeft="95dp"
-        android:text="Chief Medical Officer"
-        android:layout_width="match_parent"
-        android:layout_height="95dp" />
-</RelativeLayout>-->
+</LinearLayout>
     <View
         android:id="@+id/view"
         android:layout_width="wrap_content"

@@ -108,17 +108,18 @@ public class RMSaleLeadTrackAdapter extends ArrayAdapter<String> {
         tyetstarted.setVisibility(View.VISIBLE);
         repid=repId.get(position);
      //   milez.setText(distanceArr.get(position));
-        milez.setText(distanceArr.get(position)+" "+"Meters Away");
-
-
+        milez.setText(distanceArr.get(position)+" "+"kM Away");
         if(distanceArr.size()!=0) {
-
-milez.setText(distanceArr.get(position)+" "+"Meters Away");        }else{
+           milez.setText(distanceArr.get(position)+" "+"KM  Away");        }else{
             milez.setText("0");
-
         }
         notification.setVisibility(View.GONE);
-
+        Picasso.with(context)
+                .load(imageUrl.get(position))
+                .placeholder(R.drawable.placeholder)   // optional
+                .error(R.drawable.doctor)     // optional
+                .resize(400,400)                        // optional
+                .into(imageLead);
         if(statusArr.get(position).equals("Yet to Start"))
         {
             attend = (ImageView) rowView.findViewById(R.id.attend);
@@ -163,9 +164,13 @@ milez.setText(distanceArr.get(position)+" "+"Meters Away");        }else{
         }
         if(statusArr.get(position).equals("ATTENDED"))
         {
-
+            Picasso.with(context)
+                    .load(R.drawable.click)
+                    .placeholder(R.drawable.placeholder)   // optional
+                    .error(R.drawable.doctor)     // optional
+                    .resize(400,400)                        // optional
+                    .into(imageLead);
             notification=(ImageView)rowView.findViewById(R.id.notes);
-
             attend = (ImageView) rowView.findViewById(R.id.attend);
             reached = (ImageView) rowView.findViewById(R.id.reached);
             startyet = (ImageView) rowView.findViewById(R.id.yetstart);
@@ -204,12 +209,7 @@ milez.setText(distanceArr.get(position)+" "+"Meters Away");        }else{
             tattened.setVisibility(View.VISIBLE);
             tyetstarted.setVisibility(View.GONE);
         }
-        Picasso.with(context)
-                .load(imageUrl.get(position))
-                .placeholder(R.drawable.placeholder)   // optional
-                .error(R.drawable.doctor)     // optional
-                .resize(400,400)                        // optional
-                .into(imageLead);
+
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -228,8 +228,19 @@ milez.setText(distanceArr.get(position)+" "+"Meters Away");        }else{
         final View dialogView = inflater.inflate(R.layout.rmmessage, null);
       //  view = (ListView) dialogView.findViewById(R.id.lv);
        final TextView  alternotificationsss=(TextView) dialogView.findViewById(R.id.alternotification);
-        dialogBuilder.setView(dialogView);
-       alternotificationsss.setText(notes.get(a));
+       ImageView leadimage=(ImageView)dialogView.findViewById(R.id.leaadimage) ;
+       TextView leadname=(TextView)dialogView.findViewById(R.id.namee);
+       dialogBuilder.setView(dialogView);
+         alternotificationsss.setText(notes.get(a));
+       leadname.setText(contactName.get(a));
+           Picasso.with(context)
+               .load(imageUrl.get(a))
+               .placeholder(R.drawable.placeholder)   // optional
+               .error(R.drawable.doctor)     // optional
+               .resize(400,400)                        // optional
+               .into(leadimage);
+
+
        dialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 //notes.get(a)

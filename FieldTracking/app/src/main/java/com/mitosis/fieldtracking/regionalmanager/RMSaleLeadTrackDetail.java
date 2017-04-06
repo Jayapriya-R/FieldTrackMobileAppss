@@ -79,6 +79,7 @@ import static com.mitosis.fieldtracking.regionalmanager.RMConstants.sstate;
 import static com.mitosis.fieldtracking.regionalmanager.RMConstants.sstatus;
 import static com.mitosis.fieldtracking.regionalmanager.RMConstants.state;
 import static com.mitosis.fieldtracking.regionalmanager.RMConstants.status;
+import static com.mitosis.fieldtracking.regionalmanager.RMConstants.statusattended;
 import static com.mitosis.fieldtracking.regionalmanager.RMConstants.stelephoneNumber;
 import static com.mitosis.fieldtracking.regionalmanager.RMConstants.szipCode;
 import static com.mitosis.fieldtracking.regionalmanager.RMConstants.telephoneNumber;
@@ -107,7 +108,7 @@ public class RMSaleLeadTrackDetail extends Fragment {
     public String useridd;
     ArrayList<String> latdoub=new ArrayList<String>();
      ArrayList<String> longdoub=new ArrayList<String>();
-    private String date,ascedingorder,descendingorder;
+    private String date,ascedingorder,descendingorder,statusatttended;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -127,6 +128,7 @@ public class RMSaleLeadTrackDetail extends Fragment {
          useridd = getArguments().getString("userid");
         String usernamee = getArguments().getString("usernames");
         name.setText(firstnamee);
+
         total.setText(totalcountt);
         complete.setText(completecountt);
         pending.setText(pendingcountt);
@@ -165,7 +167,7 @@ public class RMSaleLeadTrackDetail extends Fragment {
                 String leadid = leadDetailsId.get(position);
                 String date=appointmentDate.get(position);
                 String image=imageUrl.get(position);
-                String notesd=notes.get(position);
+                String notesss=notes.get(position);
                 Bundle args = new Bundle();
                 Fragment fragment = new RMRepresentativeDetails();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -183,6 +185,8 @@ public class RMSaleLeadTrackDetail extends Fragment {
                 args.putString("idLead", leadid);
                 args.putString("appointmentDate", date);
                 args.putString("imageUrl", image);
+                args.putString("NOtes", notesss);
+
                 fragment.setArguments(args);
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setCustomAnimations(R.anim.fragment_slide_left_enter,
@@ -206,6 +210,12 @@ public class RMSaleLeadTrackDetail extends Fragment {
         String zapart1 = sortzaaa[0];
         String zapart2 = sortzaaa[1];
         descendingorder  =zapart1+useridd+zapart2;
+
+        String[] statuss = statusattended.split("26");
+        String status1 = statuss[0];
+        String status2 = statuss[1];
+        statusatttended  =status1+useridd+status2;
+
         return view;
     }
     void replocation(String s){
@@ -241,8 +251,6 @@ public class RMSaleLeadTrackDetail extends Fragment {
         });
         requestQueue.add(registerRequest);
     }
-
-
     public void objectparsing (String response){
         latitide.clear();longitude.clear();contactName.clear();status.clear();leadName.clear();telephoneNumber.clear();email.clear();addressLine1.clear();addressLine2.clear();city.clear();state.clear();zipCode.clear();country.clear();
         landMark.clear();leadDetailsId.clear();imageUrl.clear();repId.clear();appointmentDate.clear();notes.clear();
@@ -275,39 +283,29 @@ public class RMSaleLeadTrackDetail extends Fragment {
                 }
             } catch (JSONException e) {
             }
-
-
         try {
             Location location1 = new Location("locationA");
             location1.setLatitude(lat2);
             location1.setLongitude(lang2);
             Location location2 = new Location("locationB");
-          //  if(lat2!=0||lang2!=0)
-            {
 
-                for (int i = 0; i < contactName.size(); i++) {
-                    if(latitide.get(i).equals("null")){
-                        distanceArr.add("0.0");
+               for (int i = 0; i < contactName.size(); i++) {
+                   if (latitide.get(i).equals("null")||lat2!=0) {
+                       distanceArr.add("0.0");
 
-                    }else{
+                   } else {
 
-                        location2.setLatitude(Double.valueOf(latitide.get(i)));
-                        location2.setLongitude(Double.valueOf(longitude.get(i)));
-                        //    distances = location1.distanceTo(location2)/1000/kilometer
-                        distances = location1.distanceTo(location2);//meter
-                        distanceArr.add(String.valueOf((int) Math.round(distances)));
-                    }
-                }
+                       location2.setLatitude(Double.valueOf(latitide.get(i)));
+                       location2.setLongitude(Double.valueOf(longitude.get(i)));
+                       //    distances = location1.distanceTo(location2)/1000/kilometer
+                       distances = location1.distanceTo(location2)/1000;//meter
+                       distanceArr.add(String.valueOf((int) Math.round(distances)));
+                   }
+               }
+
             }
-            /*else{
-                distanceArr.add("0");
-
-            }*/ }
-
         //if(!latitide.equals("null") || !longitude.equals("null"))
         // if (latitide.equals("0.0") ||longitude.equals("0.0"))
-
-
         catch (Exception e) {
             e.printStackTrace();
         }
@@ -338,6 +336,16 @@ public class RMSaleLeadTrackDetail extends Fragment {
         }
     }
     void Sortingfunction(String sss){
+
+      /*  ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Please for the server validation process..");
+        progressDialog.setTitle("Loading..");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+*/
+
+
             RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
             String registerUserURL = sss;
             scontactName.clear();sstatus.clear();saddressLine1.clear();sleadName.clear();stelephoneNumber.clear();
@@ -347,8 +355,13 @@ public class RMSaleLeadTrackDetail extends Fragment {
             StringRequest registerRequest = new StringRequest(Request.Method.GET, registerUserURL, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
+
+
+
                     try {
                         JSONArray jsonArray = new JSONArray(response);
+
+
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject json = jsonArray.getJSONObject(i);
                             scontactName.add(json.getString("contactName"));
@@ -392,7 +405,7 @@ public class RMSaleLeadTrackDetail extends Fragment {
                                     location2.setLatitude(Double.valueOf(slatitide.get(i)));
                                     location2.setLongitude(Double.valueOf(slongitude.get(i)));
                                     //    distances = location1.distanceTo(location2)/1000/kilometer
-                                    sdistances = location1.distanceTo(location2);//meter
+                                    sdistances = location1.distanceTo(location2)/1000;//meter
                                     sdistanceArr.add(String.valueOf((int) Math.round(sdistances)));
                                 }
                             }
@@ -404,8 +417,6 @@ public class RMSaleLeadTrackDetail extends Fragment {
 
                     //if(!latitide.equals("null") || !longitude.equals("null"))
                     // if (latitide.equals("0.0") ||longitude.equals("0.0"))
-
-
                     catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -441,6 +452,10 @@ public class RMSaleLeadTrackDetail extends Fragment {
                     case R.id.sortza:
                         Sortingfunction(descendingorder);
                         break;
+                    case R.id.status:
+                        Sortingfunction(statusatttended);
+                        break;
+
                     case R.id.date:
                         Sortingfunction(date);
                         break;
