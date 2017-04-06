@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars = "vertical"
+    android:scrollbarStyle="insideOverlay">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:id="@+id/rel1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:saveEnabled="false">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/buildbg"
+            android:id="@+id/image"
+            android:scaleType="fitXY" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:src="@drawable/contprofile"
+            android:foregroundGravity="center"
+            android:layout_marginTop="30dp"
+            android:id="@+id/leadimage"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/rel1"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:id="@+id/rel2">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
+            android:layout_below="@+id/relativeLayout">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:layout_marginBottom="3dp">
+
+                <EditText
+                    android:id="@+id/hname"
+                    android:layout_height="40dp"
+                    android:layout_width="match_parent"
+                    android:backgroundTint="#c7c6c6"
+                    android:textColorHint="#dfdfdf"
+                    android:inputType="text"
+                    android:hint="First Name"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/rel2"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:id="@+id/rel3">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="29dp"
+           >
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/design_last"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:layout_marginBottom="3dp">
+
+                <EditText
+                    android:id="@+id/edit_lastname"
+                    android:layout_width="match_parent"
+                    android:backgroundTint="#c7c6c6"
+                    android:textColorHint="#dfdfdf"
+                    android:inputType="text"
+                    android:layout_height="40dp"
+                    android:hint="Last Name"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+           <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@+id/rel3"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:id="@+id/relmail">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="29dp"
+                android:layout_below="@+id/relativeLayout">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/design_mail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:layout_marginBottom="3dp">
+
+                    <EditText
+                        android:id="@+id/edit_email"
+                        android:layout_width="match_parent"
+                        android:backgroundTint="#c7c6c6"
+                        android:textColorHint="#dfdfdf"
+                        android:inputType="textEmailAddress"
+                        android:layout_height="40dp"
+                        android:hint="Email"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+    </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@+id/relmail"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:id="@+id/rel6">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="29dp"
+                android:layout_below="@+id/relativeLayout">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/design_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:layout_marginBottom="3dp">
+
+                    <EditText
+                        android:id="@+id/edit_phone"
+                        android:layout_width="match_parent"
+                        android:backgroundTint="#c7c6c6"
+                        android:textColorHint="#dfdfdf"
+                        android:inputType="phone"
+                        android:layout_height="40dp"
+                        android:hint="Mobile Number"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@+id/rel6"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:id="@+id/rel7">
+
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="45dp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:textColorHint="#dfdfdf"
+                android:inputType="textNoSuggestions"
+                android:hint="Select Designation"
+                android:textSize="18dp"
+                android:gravity="bottom"
+                android:id="@+id/text_designation" />
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:backgroundTint="#c7c6c6"
+                android:layout_marginTop="75dp"
+                android:background="#7c7878" />
+
+        </RelativeLayout>
+
+
+            <TextView
+                android:text="SUBMIT"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/rel7"
+                android:textSize="23dp"
+                android:background="@drawable/buttonback"
+                android:gravity="center"
+                android:layout_marginTop="45dp"
+                android:id="@+id/text_submit" />
+        </RelativeLayout>
+
+
+</ScrollView>
