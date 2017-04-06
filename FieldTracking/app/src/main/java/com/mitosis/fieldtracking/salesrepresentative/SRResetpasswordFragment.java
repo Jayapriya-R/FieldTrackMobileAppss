@@ -19,7 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mitosis.fieldtracking.R;
-import com.mitosis.fieldtracking.integrated.SRLoginActivity;
+import com.mitosis.fieldtracking.integrated.LoginActivity;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -83,7 +83,7 @@ public class SRResetpasswordFragment extends Fragment {
 
                         jsonObject = new JSONObject();
                     try {
-                        jsonObject.put("userName", SRLoginActivity.loginUsername);
+                        jsonObject.put("userName", LoginActivity.loginUsername);
                         jsonObject.put("oldPassword", oldPassword.getText().toString());
                         jsonObject.put("newPassword", newPassword.getText().toString());
 
@@ -122,7 +122,7 @@ return view;
 
                 Toast.makeText(getContext(),"Password has reset successfully",Toast.LENGTH_SHORT).show();
 
-                Intent main=new Intent(getContext(),SRLoginActivity.class);
+                Intent main=new Intent(getContext(),LoginActivity.class);
                 startActivity(main);
             }
 

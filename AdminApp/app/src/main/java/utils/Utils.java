@@ -51,7 +51,7 @@ public class Utils {
 
             }else if(body.equals("PUT")){
 				/*httpput = new HttpPut(uRL);
-				s = new StringEntity(Constants.PutMethodReques, HTTP.UTF_8);
+				s = new StringEntity(NMConstants.PutMethodReques, HTTP.UTF_8);
 				httpput.setEntity(s);
 				httpput.setHeader("Content-Type", "application/json");
 				response = httpClient.execute(httpput);*/

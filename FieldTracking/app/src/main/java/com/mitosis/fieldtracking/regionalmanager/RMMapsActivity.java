@@ -26,6 +26,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.mitosis.fieldtracking.R;
+import com.mitosis.fieldtracking.mapanimation.LatLngInterpolator;
+import com.mitosis.fieldtracking.mapanimation.MarkerAnimation;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -97,51 +99,6 @@ public class RMMapsActivity extends FragmentActivity implements OnMapReadyCallba
 
         mapFragment.getMapAsync(this);
     }
-
-//public void requestlocation(String url){
-//    requestQueue = Volley.newRequestQueue(RMMapsActivity.this);
-//    stringRequest=new StringRequest(Request.Method.GET,url, new Response.Listener<String>() {
-//        @Override
-//        public void onResponse(String response) {
-////                Toast.makeText(RMMapsActivity.this, response, Toast.LENGTH_SHORT).show();
-//            Log.e("Locations",response);
-//            try {
-//            JSONArray jsonArray=new JSONArray(result);
-//            Log.e("Locations",""+jsonArray);
-//            for (int i=0;i<jsonArray.length();i++){
-//                JSONObject jsonObject= (JSONObject) jsonArray.get(i);
-//                String username=jsonObject.getString("userName");
-//                String latitude=jsonObject.getString("latitude");
-//                String longitude=jsonObject.getString("longitude");
-//
-//                Log.e("Locations",""+jsonObject);
-//                LatLng axis = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
-//                mMap.addMarker(new MarkerOptions().position(axis).title(username).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-//                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(axis,14));
-//            }
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        }
-//    }, new Response.ErrorListener() {
-//        @Override
-//        public void onErrorResponse(VolleyError error) {
-//            Toast.makeText(RMMapsActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-//            Log.e("Locations error",error.toString());
-//        }
-//    });
-//    requestQueue.add(stringRequest);
-//}
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -191,7 +148,7 @@ public class RMMapsActivity extends FragmentActivity implements OnMapReadyCallba
 
         @Override
         protected String doInBackground(String... params) {
-               for (int i=0;i<1 &&locationtrackingbool;i++){
+            for (int i=0;i<1 &&locationtrackingbool;i++){
                 String WEB_RESULT = Utils.WebCall(RMConstants.getUserLocation + params[0], "GET");
                 try {
                     JSONObject jsonObject=new JSONObject(WEB_RESULT);
@@ -220,12 +177,12 @@ public class RMMapsActivity extends FragmentActivity implements OnMapReadyCallba
             LatLng oldLatLng=new LatLng(Double.parseDouble(oldLoc[0]),Double.parseDouble(oldLoc[1]));
             LatLng newLatLng=new LatLng(Double.parseDouble(newLoc[0]),Double.parseDouble(newLoc[1]));
             if (oldLatLng!=newLatLng){
-                RMLatLngInterpolator latLngInterpolator = new RMLatLngInterpolator.Spherical();
-                RMMarkerAnimation.animateMarkerToGB(mMarker,newLatLng, latLngInterpolator);
+                LatLngInterpolator latLngInterpolator = new LatLngInterpolator.Spherical();
+                MarkerAnimation.animateMarkerToGB(mMarker,newLatLng, latLngInterpolator);
                 j++;
                 if (j==5){
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(newLatLng,16));
-                j=0;
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(newLatLng,16));
+                    j=0;
                 }
                 sharedPreferences.edit().putString("lastknownlocLatlng",values[0]);
             }

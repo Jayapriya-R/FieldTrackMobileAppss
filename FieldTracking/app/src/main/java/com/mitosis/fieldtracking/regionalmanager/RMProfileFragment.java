@@ -24,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.mitosis.fieldtracking.R;
+import com.mitosis.fieldtracking.integrated.LoginActivity;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -100,7 +101,7 @@ public class RMProfileFragment extends Fragment {
 
                 RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
 
-                 registerUserURL ="http://202.61.120.46:9081/FieldTracking/users/getProfileDetails?userName="+ RMLoginPageActivity.Email.getText().toString();
+                 registerUserURL ="http://202.61.120.46:9081/FieldTracking/users/getProfileDetails?userName="+ LoginActivity.Email.getText().toString();
 
                 StringRequest registerRequest = new StringRequest(Request.Method.GET, registerUserURL, new Response.Listener<String>() {
                     @Override

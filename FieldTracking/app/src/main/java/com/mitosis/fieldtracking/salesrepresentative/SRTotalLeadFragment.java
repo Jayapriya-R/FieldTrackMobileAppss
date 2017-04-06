@@ -44,7 +44,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.mitosis.fieldtracking.R;
-import com.mitosis.fieldtracking.integrated.SRLoginActivity;
+import com.mitosis.fieldtracking.integrated.LoginActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -96,19 +96,19 @@ public class SRTotalLeadFragment extends Fragment implements LocationListener {
         String []  ascending= SRConstants.sortaz.split("26");
         String ascenpart1=ascending[0];
         String ascenpart2=ascending[1];
-        ascendings=ascenpart1+ SRLoginActivity.userID+ascenpart2;
+        ascendings=ascenpart1+ LoginActivity.userID+ascenpart2;
 
         String []  dec= SRConstants.sortza.split("26");
         String dec1=dec[0];
         String dec2=dec[1];
-        descendings=dec1+ SRLoginActivity.userID+dec2;
+        descendings=dec1+ LoginActivity.userID+dec2;
 
         String []  date= SRConstants.sortappointdateasc.split("26");
         String date1=date[0];
         String date2=date[1];
-        datesort=date1+ SRLoginActivity.userID+date2;
+        datesort=date1+ LoginActivity.userID+date2;
 
-        new RegisterTask().execute(SRConstants.listUrl+ SRLoginActivity.userID);
+        new RegisterTask().execute(SRConstants.listUrl+ LoginActivity.userID);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -312,9 +312,13 @@ public class SRTotalLeadFragment extends Fragment implements LocationListener {
             progressDialog.setTitle("Loading..");
             progressDialog.setCancelable(false);
             progressDialog.show();
+
+        }
+        @Override
+        protected Void doInBackground(String... params) {
             RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
 
-            String registerUserURL = SRConstants.listUrl+ SRLoginActivity.userID;
+            String registerUserURL = SRConstants.listUrl+ LoginActivity.userID;
             SRConstants.contactName.clear();
             SRConstants.status.clear();
             SRConstants.addressLine1.clear();
@@ -376,10 +380,6 @@ public class SRTotalLeadFragment extends Fragment implements LocationListener {
                 }
             });
             requestQueue.add(registerRequest);
-        }
-        @Override
-        protected Void doInBackground(String... params) {
-
 
             return null;
         }

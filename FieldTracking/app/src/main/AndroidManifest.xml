@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mitosis.fieldtracking">
-
-
-
     <uses-permission android:name="com.davidmilicevic97.testapp.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -21,7 +18,7 @@
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/appiconblue"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
@@ -35,7 +32,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.mitosis.fieldtracking.integrated.SRLoginActivity"
+            android:name="com.mitosis.fieldtracking.integrated.LoginActivity"
             android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,11 +44,11 @@
             android:name="com.mitosis.fieldtracking.salesrepresentative.SRMainActivity"
             android:screenOrientation="sensorPortrait" />
         <activity
-            android:name="com.mitosis.fieldtracking.salesrepresentative.SRForgotFragment"
+            android:name="com.mitosis.fieldtracking.integrated.ChangepasswordDeeplink"
             android:screenOrientation="sensorPortrait">
         </activity>
         <activity
-            android:name="com.mitosis.fieldtracking.salesrepresentative.SRForgotActivity"
+            android:name="com.mitosis.fieldtracking.integrated.ForgotPasswordFragment"
             android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
@@ -70,17 +67,6 @@
         <activity
             android:name="com.mitosis.fieldtracking.salesrepresentative.SRMapsActivity"
             android:label="@string/title_activity_maps"></activity>
-        <activity android:name="com.mitosis.fieldtracking.regionalmanager.RMForgotpageActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
-
-        <activity
-            android:name="com.mitosis.fieldtracking.regionalmanager.RMForgotActivity"
-            android:screenOrientation="sensorPortrait">
-        </activity>
-
-
         <activity
             android:name="com.mitosis.fieldtracking.regionalmanager.RMMainActivity"
             android:label="@string/app_name"
@@ -97,6 +83,10 @@
             android:name="com.mitosis.fieldtracking.regionalmanager.RMMapsActivity"
             android:label="@string/google_maps_key"></activity>
 
+        <activity
+            android:name="com.mitosis.fieldtracking.nationalmanager.NMMainActivity"
+            android:screenOrientation="sensorPortrait">
+        </activity>
 
     </application>
 

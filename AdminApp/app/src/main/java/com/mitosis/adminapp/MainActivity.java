@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.nmactivity_main);
 
         act=this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -74,14 +74,14 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         String title = "";
         switch (id) {
             case R.id.nav_1:
-                fragmentClass = TabFragment.class;
-                args.putString(Constants.FRAG_E, "Gallery");
+                fragmentClass = NMTabFragment.class;
+                args.putString(NMConstants.FRAG_E, "Gallery");
 
                 break;
 
             case R.id.nav_8:
                 signout();
-                           args.putString(Constants.FRAG_D, "profile");
+                           args.putString(NMConstants.FRAG_D, "profile");
 
                 break;
         }
@@ -119,8 +119,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     public void homeFragment() {
         try {
             Bundle args = new Bundle();
-            Class fragmentClass = TabFragment.class;
-            args.putString(Constants.FRAG_A, "Welcome");
+            Class fragmentClass = NMTabFragment.class;
+            args.putString(NMConstants.FRAG_A, "Welcome");
             Fragment fragment = (Fragment) fragmentClass.newInstance();
             fragment.setArguments(args);
             FragmentManager fragmentManager = getSupportFragmentManager();

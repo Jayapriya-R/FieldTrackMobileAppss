@@ -32,7 +32,7 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.mitosis.fieldtracking.R;
-import com.mitosis.fieldtracking.integrated.SRLoginActivity;
+import com.mitosis.fieldtracking.integrated.LoginActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -121,8 +121,8 @@ public class SRCreateLeadFragment extends Fragment {
                         jsonObject.put("state", sstate);
                         jsonObject.put("country", "India");
                         jsonObject.put("zipCode",szipcode);
-                        jsonObject.put("createdBy", SRLoginActivity.userID);
-                        jsonObject.put("assignedTo", SRLoginActivity.userID);
+                        jsonObject.put("createdBy", LoginActivity.userID);
+                        jsonObject.put("assignedTo", LoginActivity.userID);
                         jsonObject.put("landMark", "windmare appt");
                         jsonObject.put("telephoneNumber", "7848938499");
                         jsonObject.put("mobileNumber",sPhone);

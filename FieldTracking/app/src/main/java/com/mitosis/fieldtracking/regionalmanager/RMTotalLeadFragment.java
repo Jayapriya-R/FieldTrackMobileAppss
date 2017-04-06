@@ -140,7 +140,7 @@ public class RMTotalLeadFragment extends Fragment {
                             username.add(jsonObject.getString("userName"));
                             uuuserId.add(jsonObject.getString("userId"));
                         }
-                    } catch (JSONException e) {
+                      } catch (JSONException e) {
                     }
                     adapter = new RMTotalLeadAdapter(getContext(),firstname,lastName,totalcount,completecount,pendingcount ,username,uuuserId);
                     list.setAdapter(adapter);

@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.mitosis.fieldtracking.R;
+import com.mitosis.fieldtracking.mapanimation.DirectionsJSONParser;
 
 import org.json.JSONObject;
 
@@ -173,7 +174,7 @@ public class SRMapsActivity extends FragmentActivity implements OnMapReadyCallba
 
             try {
                 jObject = new JSONObject(jsonData[0]);
-                SRDirectionsJSONParser parser = new SRDirectionsJSONParser();
+                DirectionsJSONParser parser = new DirectionsJSONParser();
 
                 // Starts parsing data
                 routes = parser.parse(jObject);

@@ -32,7 +32,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.mitosis.fieldtracking.R;
-import com.mitosis.fieldtracking.integrated.SRLoginActivity;
+import com.mitosis.fieldtracking.integrated.LoginActivity;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -93,9 +93,12 @@ public class SRMainActivity extends AppCompatActivity implements  NavigationView
             progressDialog.setCancelable(false);
             progressDialog.show();
 
-            RequestQueue requestQueue = Volley.newRequestQueue(context);
 
-            registerUserURL = "http://202.61.120.46:9081/FieldTracking/users/getProfileDetails?userName="+ SRLoginActivity.Email.getText().toString();
+        }
+        @Override
+        protected Void doInBackground(String... params) {
+            registerUserURL = "http://202.61.120.46:9081/FieldTracking/users/getProfileDetails?userName="+ LoginActivity.Email.getText().toString();
+            RequestQueue requestQueue = Volley.newRequestQueue(context);
 
             StringRequest registerRequest = new StringRequest(Request.Method.GET, registerUserURL, new Response.Listener<String>() {
                 @Override
@@ -127,15 +130,12 @@ public class SRMainActivity extends AppCompatActivity implements  NavigationView
                 }
             });
             requestQueue.add(registerRequest);
+
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
-        @Override
-        protected Void doInBackground(String... params) {
-
             return null;
         }
 

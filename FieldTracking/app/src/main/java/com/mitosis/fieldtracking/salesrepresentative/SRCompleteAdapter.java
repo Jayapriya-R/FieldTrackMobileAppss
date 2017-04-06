@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mitosis.fieldtracking.R;
-import com.mitosis.fieldtracking.integrated.SRLoginActivity;
+import com.mitosis.fieldtracking.integrated.LoginActivity;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -162,7 +162,7 @@ public class SRCompleteAdapter extends ArrayAdapter<String>{
                     jsonObject.put("appointmentDate", SRConstants.appointmentDate.get(position));
                     jsonObject.put("leadDetailsId", SRConstants.leadDetailsId.get(position));
                     jsonObject.put("status","started");
-                    jsonObject.put("repId", SRLoginActivity.userID);
+                    jsonObject.put("repId", LoginActivity.userID);
                     jsonObject.put("notes","aaaaaaa");
                     new  MyAsyncTask((Activity) getContext()).execute();
                     startyet = (ImageView) rowView.findViewById(R.id.yetstart);

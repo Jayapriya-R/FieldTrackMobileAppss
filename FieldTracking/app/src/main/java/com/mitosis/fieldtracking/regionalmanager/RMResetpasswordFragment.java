@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mitosis.fieldtracking.R;
+import com.mitosis.fieldtracking.integrated.LoginActivity;
 
 import org.json.JSONObject;
 
@@ -93,7 +94,7 @@ return view;
 
                 Toast.makeText(getContext(),"Password has reset successfully",Toast.LENGTH_SHORT).show();
 
-                Intent main=new Intent(getContext(),RMLoginPageActivity.class);
+                Intent main=new Intent(getContext(),LoginActivity.class);
                 startActivity(main);
             }
 

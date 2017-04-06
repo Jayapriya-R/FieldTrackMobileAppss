@@ -1,9 +1,7 @@
 <resources>
-    <string name="app_name">Sales Rep</string>
-
+    <string name="app_name"><b>Field Tracking</b></string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">SortBy</string>
 
     <string name="google_maps_key"> AIzaSyAosQkzm0B_eiZoRwCTFQwqY6DhBqeXpbY </string>

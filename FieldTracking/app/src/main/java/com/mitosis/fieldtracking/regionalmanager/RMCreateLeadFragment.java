@@ -61,7 +61,7 @@ import static android.app.Activity.RESULT_OK;
 import static com.mitosis.fieldtracking.regionalmanager.RMConstants.firstname;
 import static com.mitosis.fieldtracking.regionalmanager.RMConstants.lastName;
 import static com.mitosis.fieldtracking.regionalmanager.RMConstants.userId;
-import static com.mitosis.fieldtracking.regionalmanager.RMLoginPageActivity.loginuserid;
+import static com.mitosis.fieldtracking.integrated.LoginActivity.loginuserid;
 
 
 public class RMCreateLeadFragment extends Fragment implements View.OnTouchListener {

@@ -14,7 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.mitosis.fieldtracking.integrated.SRLoginActivity;
+import com.mitosis.fieldtracking.integrated.LoginActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -156,7 +156,7 @@ public class SRLocationListenerService extends Service {
                 Log.e("Latitude", ""+loc.getLatitude());
                 Log.e("Longitude", ""+loc.getLongitude());
                 try {
-                    jsonwebpost.put("userName", SRLoginActivity.Email.getText().toString()).put("latitude",""+loc.getLatitude()).put("longitude",""+loc.getLongitude());
+                    jsonwebpost.put("userName", LoginActivity.Email.getText().toString()).put("latitude",""+loc.getLatitude()).put("longitude",""+loc.getLongitude());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

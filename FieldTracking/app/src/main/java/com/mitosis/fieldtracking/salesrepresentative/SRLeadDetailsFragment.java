@@ -31,7 +31,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.mitosis.fieldtracking.R;
-import com.mitosis.fieldtracking.integrated.SRLoginActivity;
+import com.mitosis.fieldtracking.integrated.LoginActivity;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -129,7 +129,7 @@ public class SRLeadDetailsFragment extends Fragment implements OnMapReadyCallbac
                     jsonObject.put("appointmentDate", assigndate);
                     jsonObject.put("leadDetailsId", leadid);
                     jsonObject.put("status", "ATTENDED");
-                    jsonObject.put("repId", SRLoginActivity.userID);
+                    jsonObject.put("repId", LoginActivity.userID);
                     jsonObject.put("notes", description.getText().toString());
                     new MyAsyncTask((Activity) getContext()).execute();
 

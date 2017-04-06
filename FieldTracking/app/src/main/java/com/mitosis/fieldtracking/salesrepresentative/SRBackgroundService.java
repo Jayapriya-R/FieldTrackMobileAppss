@@ -18,7 +18,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.widget.Toast;
 
 import com.mitosis.fieldtracking.R;
-import com.mitosis.fieldtracking.integrated.SRLoginActivity;
+import com.mitosis.fieldtracking.integrated.LoginActivity;
 
 import org.json.JSONObject;
 
@@ -91,7 +91,7 @@ public class SRBackgroundService extends Service {
                         jsonObject.put("appointmentDate", SRConstants.appointDate);
                         jsonObject.put("leadDetailsId", SRConstants.leadId);
                         jsonObject.put("status","reached");
-                        jsonObject.put("repId", SRLoginActivity.userID);
+                        jsonObject.put("repId", LoginActivity.userID);
                         jsonObject.put("notes","aaaaaaa");
                         String registerUserURL = SRConstants.update;
                         String WEB_RESULT = Utils.WebCall(registerUserURL, jsonObject.toString());

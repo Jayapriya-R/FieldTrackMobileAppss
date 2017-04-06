@@ -39,7 +39,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.mitosis.fieldtracking.R;
-import com.mitosis.fieldtracking.integrated.SRLoginActivity;
+import com.mitosis.fieldtracking.integrated.LoginActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -92,7 +92,7 @@ public class SRPendingLeadFragment extends Fragment implements LocationListener 
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        new RegisterTask().execute(SRConstants.pending+ SRLoginActivity.userID);
+        new RegisterTask().execute(SRConstants.pending+ LoginActivity.userID);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -319,17 +319,17 @@ public class SRPendingLeadFragment extends Fragment implements LocationListener 
             String []  ascending= SRConstants.sortaz.split("26");
             String ascenpart1=ascending[0];
             String ascenpart2=ascending[1];
-            ascendings=ascenpart1+ SRLoginActivity.userID+ascenpart2;
+            ascendings=ascenpart1+ LoginActivity.userID+ascenpart2;
 
             String []  dec= SRConstants.sortza.split("26");
             String dec1=dec[0];
             String dec2=dec[1];
-            descendings=dec1+ SRLoginActivity.userID+dec2;
+            descendings=dec1+ LoginActivity.userID+dec2;
 
             String []  date= SRConstants.sortappointdateasc.split("26");
             String date1=date[0];
             String date2=date[1];
-            datesort=date1+ SRLoginActivity.userID+date2;
+            datesort=date1+ LoginActivity.userID+date2;
 
 
             StringRequest registerRequest = new StringRequest(Request.Method.GET, registerUserURL, new Response.Listener<String>() {
