@@ -525,11 +525,11 @@ String clientname,desitination,address1,address2,cityy,statee,zipcodee,mphonee,s
                             firstname.add(jsonObject.getString("firstName"));
                             lastName.add(jsonObject.getString("lastName"));
                             userId.add(jsonObject.getString("userId"));
-                            //imageUrl.add(jsonObject.getString("imageUrl"));
+                            uimage.add(jsonObject.getString("imageUrl"));
                         }
 
 
-                        adapter = new RMDailogAdapter(getContext(), firstname,userId);
+                        adapter = new RMDailogAdapter(getContext(), firstname,userId,uimage);
                     } catch (JSONException e) {
                     }
                 }
