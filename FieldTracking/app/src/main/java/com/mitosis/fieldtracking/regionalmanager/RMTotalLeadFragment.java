@@ -1,7 +1,7 @@
 package com.mitosis.fieldtracking.regionalmanager;
 
 /**
- *jayapriya Created by mitosis on 18/2/17.
+ *jayapriya    Created by mitosis on 18/2/17.
  */
 
 import android.app.Dialog;
@@ -59,7 +59,7 @@ public class RMTotalLeadFragment extends Fragment {
     ListView list;
     private static RMTotalLeadAdapter adapter;
     FloatingActionButton flat;
-
+//string
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.rmrepview, container, false);
@@ -146,6 +146,8 @@ public class RMTotalLeadFragment extends Fragment {
                             pendingcount.add(jsonObject.getString("pendingCount"));
                             username.add(jsonObject.getString("userName"));
                             uuuserId.add(jsonObject.getString("userId"));
+                            
+                            
                             
                         }
                     } catch (JSONException e) {
