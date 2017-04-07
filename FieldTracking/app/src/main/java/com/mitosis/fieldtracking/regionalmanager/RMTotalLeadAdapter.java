@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 public class RMTotalLeadAdapter extends ArrayAdapter<String> {
     private Context context;
+    ImageView repimage;
+
     TextView name, total,completed,pending;
    // public static TextView useridddd;
     private ArrayList<String> firstname=new ArrayList<String>();
@@ -26,8 +28,10 @@ public class RMTotalLeadAdapter extends ArrayAdapter<String> {
     private  ArrayList<String> completecount=new ArrayList<String>();
     private ArrayList<String> username=new ArrayList<String>();
     private ArrayList<String> uuuserid=new ArrayList<String>();
+    private ArrayList<String> uimage=new ArrayList<String>();
+
    public static String user;
-    public RMTotalLeadAdapter(Context context, ArrayList<String> firstname, ArrayList<String> lastName, ArrayList<String> totalcount, ArrayList<String> completecount, ArrayList<String> pendingcount, ArrayList<String> usenamee, ArrayList<String> uuuserid) {
+    public RMTotalLeadAdapter(Context context, ArrayList<String> firstname, ArrayList<String> lastName, ArrayList<String> totalcount, ArrayList<String> completecount, ArrayList<String> pendingcount, ArrayList<String> usenamee, ArrayList<String> uuuserid,ArrayList<String> image) {
         super(context, R.layout.rmheader, firstname);
         this.context=context;
         this.firstname=firstname;
@@ -37,6 +41,7 @@ public class RMTotalLeadAdapter extends ArrayAdapter<String> {
         this.pendingcount=pendingcount;
         this.username=usenamee;
         this.uuuserid=uuuserid;
+        this.uimage=image;
     }
     @Override
     public View getView(final int position, final View convertView, ViewGroup parent) {
@@ -50,6 +55,14 @@ public class RMTotalLeadAdapter extends ArrayAdapter<String> {
         total.setText(totalcount.get(position));
         completed.setText(completecount.get(position));
         pending.setText(pendingcount.get(position));
+        repimage=(ImageView)rowView.findViewById(R.id.image_lead);
+  
+        Picasso.with(context)
+        .load(uimage.get(position))
+        .placeholder(R.drawable.placeholder)   // optional
+        .error(R.drawable.doctor)     // optional
+        .resize(400,400)                        // optional
+        .into(repimage);
         return rowView;
     }
 }

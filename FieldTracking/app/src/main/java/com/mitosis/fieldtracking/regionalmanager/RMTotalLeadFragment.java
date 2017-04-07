@@ -146,13 +146,14 @@ public class RMTotalLeadFragment extends Fragment {
                             pendingcount.add(jsonObject.getString("pendingCount"));
                             username.add(jsonObject.getString("userName"));
                             uuuserId.add(jsonObject.getString("userId"));
-                            
+                            uimage.add(jsonObject.getString("imageUrl"));
+
                             
                             
                         }
                     } catch (JSONException e) {
                     }
-                    adapter = new RMTotalLeadAdapter(getContext(), firstname, lastName, totalcount, completecount, pendingcount, username, uuuserId);
+                    adapter = new RMTotalLeadAdapter(getContext(), firstname, lastName, totalcount, completecount, pendingcount, username, uuuserId,uimage);
                     list.setAdapter(adapter);
                     list.setTextFilterEnabled(true);
                 }

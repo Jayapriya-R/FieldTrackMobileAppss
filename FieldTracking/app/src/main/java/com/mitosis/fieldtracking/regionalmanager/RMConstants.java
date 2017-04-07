@@ -61,6 +61,7 @@ public class RMConstants {
    // public static  ArrayList<String> long2= new ArrayList<String>();
     ArrayList<String> latdoub=new ArrayList<String>();
     ArrayList<String> longdoub=new ArrayList<String>();
+    public static  ArrayList<String> uimage= new ArrayList<String>();
 
     public static  ArrayList<String> distanceArr= new ArrayList<String>();
     public static  ArrayList<String> sdistanceArr= new ArrayList<String>();
