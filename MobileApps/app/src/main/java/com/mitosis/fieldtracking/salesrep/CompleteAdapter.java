@@ -60,6 +60,19 @@ public class CompleteAdapter extends ArrayAdapter<String>{
         this.imagesArr = images;
 
     }
+    public CompleteAdapterrrrr(Context context, ArrayList<String> contactName, ArrayList<String> status, ArrayList<String> leadid,ArrayList<String> address1,ArrayList<String> address2, ArrayList<String> city, ArrayList<String> state,ArrayList<String> zipcode,ArrayList<String> latitude,ArrayList<String> longitude,ArrayList<String> distance,ArrayList<String> images) {
+        super(context, R.layout.completedlead, contactName);
+        this.getContext();
+        this.context = context;
+        this.nameArr = contactName;
+        this.statusArr = status;
+        this.leadid = leadid;
+        this.latitudeArr = latitude;
+        this.longitudeArr = longitude;
+        this.dinstances = distance;
+        this.imagesArr = images;
+
+    }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
