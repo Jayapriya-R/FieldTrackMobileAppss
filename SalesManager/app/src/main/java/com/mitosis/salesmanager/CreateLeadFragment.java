@@ -125,9 +125,18 @@ String clientname,desitination,address1,address2,cityy,statee,zipcodee,mphonee,s
 //        asfkjjasfojadfoafeofqeiofhqeihheqif
 //        afjsdddfdfjdifdjfdijf
 //        sfkafafnainoiggioqengeq
+        adfdaafiafaifaf
+//sfaspfadjpdivdpvadpvdavoadovda
+                //gggggggggggg
+                ////qqqqqqqqqqqqqqqq
+                //kkkkkkkkkk
+                //        asfkjjasfojadfoafeofqeiofhqeihheqif
+//        afjsdddfdfjdifdjfdijf
+//        sfkafafnainoiggioqengeq
 //        aiifeaifheifoeiggioqrgiorbgiorwbhoiwrbiwrbiwrvwirv
 //        efqefipeqfpeqifhepfehfieqhfpiqefheqfe
-        clientname=Clientname.getText().toString();
+
+                clientname=Clientname.getText().toString();
         desitination=Desitination.getText().toString();
         address1 =mAddress.getText().toString();
         address2 = mAddress2.getText().toString();
