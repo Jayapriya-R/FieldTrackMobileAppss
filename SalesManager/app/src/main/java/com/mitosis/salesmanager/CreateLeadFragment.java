@@ -122,7 +122,7 @@ String clientname,desitination,address1,address2,cityy,statee,zipcodee,mphonee,s
                 spinnerselection();
             }
         });
-//Shivaramakeishnsn
+
         clientname=Clientname.getText().toString();
         desitination=Desitination.getText().toString();
         address1 =mAddress.getText().toString();
